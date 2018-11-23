@@ -1,19 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <app-header></app-header>
     <router-view/>
   </div>
 </template>
 
 <script>
+import header from './components/header'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'app-header': header
+  }
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

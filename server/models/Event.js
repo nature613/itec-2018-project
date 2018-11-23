@@ -17,21 +17,6 @@ const LeaderboardUserSchema = new Schema({
     }
 });
 
-const QuestionSchema = new Schema({
-    questionType: {
-        type: Number,
-        required: true
-    },
-    answers: [String],
-    correctAnswers: [{
-        type: String,
-        required: true
-    }],
-    difficulty: {
-        type: Number
-    }
-})
-
 const EventSchema = new Schema({
     title:{
         type: String,
@@ -44,10 +29,10 @@ const EventSchema = new Schema({
         trim: true
     },
     leaderboard: [LeaderboardUserSchema],
-    questions: [QuestionSchema],
     dueDate: {
         type: Date
-    }
+    },
+    quizzesuId: [String]
 });
 
 const Event = mongoose.model('event', EventSchema);
