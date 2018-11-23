@@ -6,6 +6,6 @@ module.exports = {
 
         EventModel.create(data).then( (event) =>{
             res.send(event);
-        })
+        }).catch(next)
     }
 }

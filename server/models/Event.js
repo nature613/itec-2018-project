@@ -17,6 +17,38 @@ const LeaderboardUserSchema = new Schema({
     }
 });
 
+const QuizSchema = new Schema({
+    title: {
+        type: String
+    },
+    quizType:{
+        type: Number
+    },
+    numberOfQuestions:{
+        type: Number
+    },
+    maximumTime: {
+        type: Number
+    },
+    generatedQuizzes: [{
+        id: {
+            type: Number
+        },
+        used: Boolean
+    }],
+    rules:[{
+        numberofQuestionsInRule:{
+            type: Number
+        },
+        typeOfQuestionsInRule: {
+            type: Number
+        },
+        difficultyOfQuestionsInRule: {
+            type: Number
+        }
+    }]
+})
+
 const EventSchema = new Schema({
     title:{
         type: String,
@@ -32,7 +64,8 @@ const EventSchema = new Schema({
     dueDate: {
         type: Date
     },
-    quizzesuId: [String]
+
+    quizzes:[QuizSchema]
 });
 
 const Event = mongoose.model('event', EventSchema);
