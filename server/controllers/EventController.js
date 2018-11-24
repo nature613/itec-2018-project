@@ -14,5 +14,27 @@ module.exports = {
                 res.send(events)
             }
         )
+    },
+    getEvent: function(req,res, next){
+        EventModel.findById({_id: req.params.id}).then(
+            (event) =>{
+                res.send(event)
+            }
+        )
+    },
+    updateEvent: function(req, res, next){
+        EventModel.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description}, {new:true})
+        .then(
+            (event)=>{
+                res.send(event)
+            }
+        ).catch(next)
+    },
+    deleteEvent: function(req,res,next){
+        EventModel.findByIdAndDelete({_id: req.params.id}).then(
+            (event) => {
+                res.send(event)
+            }
+        )
     }
 }
