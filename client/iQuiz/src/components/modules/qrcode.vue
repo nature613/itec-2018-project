@@ -1,38 +1,25 @@
 <template>
     <div class="hello">
-        <div class="buttons-plate">
-            <h2>Add Event</h2>
-            <input type="text" v-model="body.title" placeholder="Title" required/>
-            <input type="text" v-model="body.description" placeholder="Description" required/>
-            <span @click="addEvent">ADD</span>
+        <h1>QRCodes for Vue</h1>
+        <qr-code text="http://localhost:8080/eents/quiz/1/dagdgmh"></qr-code>
 
-        </div>
     </div>
 </template>
 
 <script>
-
+import VueQRCodeComponent from 'vue-qrcode-component'
 
 export default {
-  name: 'AddEvent',
+  name: 'Qrcode',
     data () {
         return {
-            body: {
-                title: '',
-                description: '',
-                quizType: ''
-            }
         }
     },
     methods : {
-        addEvent: function(){
-            //console.log(this.body);
-            this.$http.post('http://localhost:4000/api/events', this.body).then(
-                (event) => {
-                    console.log(event)
-                }
-            )
-        }
+
+    },
+    components: {
+        'qr-code': VueQRCodeComponent
     },
     mounted () {
         console.log(this.$store.state.token)
@@ -56,7 +43,6 @@ export default {
 h2{
     font-size: 2rem;
     color: #fff;
-    flex-grow: 0;
 }
 
 .buttons-plate{
@@ -110,7 +96,6 @@ select{
     color: rgba(255,255,255,.6);
 
   background-color: #ba92cb;
-  background-image: url('../assets/ic_keyboard_arrow_down_white_24px.svg');
   background-position: 95% center; 
   background-repeat: no-repeat;
 }

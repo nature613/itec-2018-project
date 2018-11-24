@@ -46,7 +46,8 @@ const QuizSchema = new Schema({
         difficultyOfQuestionsInRule: {
             type: Number
         }
-    }]
+    }],
+    leaderboard: [LeaderboardUserSchema]
 })
 
 const EventSchema = new Schema({
@@ -60,7 +61,6 @@ const EventSchema = new Schema({
         default: "A small description of an awesome event :D",
         trim: true
     },
-    leaderboard: [LeaderboardUserSchema],
     dueDate: {
         type: Date
     },

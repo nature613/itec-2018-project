@@ -12,7 +12,10 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-es2015": "^6.24.1",
+    "v-qrcode": "^1.0.3",
     "vue": "^2.5.2",
+    "vue-qrcode-component": "^2.1.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
