@@ -111,10 +111,6 @@ h3{
 cursor: pointer;
 }
 
-.sidebar ul li a{
-  
-}
-
 .nav-header{
   display: flex;
   margin-left: 4%;

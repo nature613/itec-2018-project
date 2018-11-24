@@ -8,7 +8,7 @@ const app = express();
 app.set('secretKey', 'CHEIESECRETA');
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/iQuiz');
+mongoose.connect('mongodb://localhost/iQuiz', {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
