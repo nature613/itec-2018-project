@@ -46,7 +46,11 @@ module.exports = {
                     console.log(questions[question])
                     good.push(questions[question][resource])
                 }
-                res.send(good)
+                var response = good.filter(function(item, pos) {
+                    return good.indexOf(item) == pos;
+                })
+                
+                res.send(response)
             }            
         )
     }

@@ -25,6 +25,10 @@ const UserSchema = new Schema({
     admin: {
         type: Boolean,
         default: false
+    },
+    confirmed: {
+        type: Boolean,
+        default: false
     }
 });
 
