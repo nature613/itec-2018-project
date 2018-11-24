@@ -2,6 +2,16 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const QuestionSchema = new Schema({
+    title:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    //True = scored, False = nonscored
+    scored:{
+        type: Boolean
+    },
+    //Question type: 0-text; 1-radio; 2-checkbox;
     questionType: {
         type: Number,
         required: true
@@ -9,15 +19,15 @@ const QuestionSchema = new Schema({
     answers: [String],
     correctAnswers: [{
         type: String,
-        required: true
     }],
+    //Difficulty: 0-easy; 1-medium; 2-hard;
     difficulty: {
-        type: Number
+        type: Number,
     },
-    title:{
-        type: String
-    },
-    category: [String]
+    category: {
+        type: String,
+        lowercase: true
+    }
 })
 
 const Question = mongoose.model('question', QuestionSchema)

@@ -9,7 +9,7 @@ module.exports = {
         }).catch(next)
     },
     getAll: function(req, res, next){
-        EventModel.find({}).then(
+        EventModel.find(req.query).then(
             (events)=>{
                 res.send(events)
             }
