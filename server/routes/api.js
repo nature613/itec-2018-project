@@ -3,6 +3,7 @@ const router = express.Router();
 const eventController = require('../controllers/EventController')
 const questionController = require('../controllers/QuestionController')
 const userController = require('../controllers/UserController')
+const quizController = require('../controllers/QuizControler')
 const validator = require('../helpers/validators')
 
 
@@ -15,6 +16,9 @@ router.delete('/event/:id', eventController.deleteEvent);
 
 
 //Quiz related
+router.post('/event/:id/quizzes', quizController.create);
+router.get('/event/:id/quizzes', quizController.getAll);
+router.get('/event/:id/quiz/:quizId', quizController.getOne);
 
 
 //Questions related

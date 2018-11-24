@@ -19,8 +19,10 @@ const LeaderboardUserSchema = new Schema({
 
 const QuizSchema = new Schema({
     title: {
-        type: String
+        type: String,
+        unique: true
     },
+    //0 - scored, 1 - nonscored
     quizType:{
         type: Number
     },
@@ -45,6 +47,10 @@ const QuizSchema = new Schema({
         },
         difficultyOfQuestionsInRule: {
             type: Number
+        },
+        categoryOfQuestionsInRule: {
+            type: String,
+            lowercase: true
         }
     }],
     leaderboard: [LeaderboardUserSchema]

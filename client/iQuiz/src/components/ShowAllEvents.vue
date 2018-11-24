@@ -2,12 +2,13 @@
     <div class="hello">
         <div class="buttons-plate">
             <h2>All events</h2>
+            <input type="text" v-model="search" placeholder="Search">
             <div class="events">
                 <div class="box">
                     <img src="../assets/baseline-add-24px.svg" class="plus">
                     <router-link to="/addevent" class="router-text">Add new event</router-link>
                 </div>
-                <div class="box" v-for="event in events" :key="event._id">
+                <div class="box" v-for="event in filteredEvents" :key="event._id">
                     <router-link v-bind:to="'/modifyevent/' + event._id" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
                     <h4>{{event.title}}</h4>
                     <p>{{event.description}}</p>
@@ -25,7 +26,8 @@ export default {
   name: 'ShowAllEvents',
     data () {
         return {
-            events: []
+            events: [],
+            search: ''
         }
     },
     methods : {
@@ -35,10 +37,17 @@ export default {
         this.$http.get('http://localhost:4000/api/events').then(
             (data) =>{
                 this.events = data.data;
-                console.log(this.events)
+                console.log(this.events);
             }
         )
     },
+    computed: {
+        filteredEvents: function(){
+            return this.events.filter((event) =>{
+                return event.title.match(this.search);
+            });
+        }
+    }
 
 }
 </script>
@@ -66,7 +75,7 @@ h4{
 .buttons-plate{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     width: 75vw;
 }
 
@@ -80,12 +89,13 @@ option{
     margin-top: 10vh;
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
+
 }
 
 .box{
     background-color: #D7CBCB;
-    width: 70%;
+    width: 90%;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -129,9 +139,33 @@ option{
 #event-link:hover{
   box-shadow: 0 0 20px #000;
 }
+
+
+input{
+    margin-bottom: 1%;
+    padding: 15px;
+    border:0;
+    border-radius: 10px;
+    color: #fff;
+    width: 70%;
+    background-color: #ba92cb;
+
+}
+
+input::placeholder{
+    color: rgba(255,255,255,.6);
+
+}
+
 @media (min-width: 900px) {
     .buttons-plate{
         width: 55vw;
+    }
+    .events{
+        width: 100%;
+    }
+    .box{
+        width: 100%;
     }
 }
 </style>
