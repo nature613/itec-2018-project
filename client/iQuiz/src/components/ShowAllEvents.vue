@@ -34,7 +34,7 @@ export default {
     },
     mounted () {
         console.log(this.$store.state.token);
-        this.$http.get('http://localhost:4000/api/events').then(
+        this.$http.get('http://localhost:4000/api/events', {headers: {'x-access-token': this.$store.token}}).then(
             (data) =>{
                 this.events = data.data;
                 console.log(this.events);

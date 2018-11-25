@@ -7,12 +7,12 @@
         <div class="content">
             <article class="topcontent1">
                 <header>
-                    <h2>1914 translation</h2>
+                    <h2>{{event.title}}</h2>
                 </header>
                 
 
                 <content>
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+                    <p>{{event.description}}
                     </p>
                 </content>
             </article>
@@ -25,7 +25,7 @@
         <div class="content1">
             <article class="topcontent2">
                 <header>
-                    <h2>Enter code</h2>
+                <input type="text" placeholder="Enter code" required/>
                 </header>
                 <footer>
                     <h4 class="post-info">Enter the code you were provided with.></h4>
@@ -44,10 +44,17 @@ export default {
   name: 'ShowEvent',
   data () {
     return {
+        event:{
+            title:'',
+            description:''
+        }
     }
   },
   mounted () {
     console.log(this.$store.state.token)
+    this.$http.get('http://localhost:4000/api/event/'+this.$route.params.id).then((response)=>{
+        this.event = response.data;
+    })
   }
 }
 </script>
@@ -101,10 +108,17 @@ content{
   align-items: center;
   height: 400px;
   width: 100%;
-  ;
-    
+  ;}
+input{
+    margin-bottom: 10%;
+    padding: 15px;
+    border:0;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #ba92cb;
 
 }
+
 
 </style>
 
