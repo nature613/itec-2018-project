@@ -9,7 +9,7 @@
                     <router-link to="/addevent" class="router-text">Add new event</router-link>
                 </div>
                 <div class="box" v-for="event in filteredEvents" :key="event._id">
-                    <router-link v-bind:to="'/modifyevent/' + event._id" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
+                    <router-link v-bind:to="'/event/' + event._id + '/addquiz'" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
                     <h4>{{event.title}}</h4>
                     <p>{{event.description}}</p>
                     <router-link  v-bind:to="'/event/' + event._id"  class="router-text" id="event-link">Go to event</router-link>

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import AddEvent from '@/components/AddEvent'
 import AddQuestion from '@/components/AddQuestion'
+import AddQuiz from '@/components/AddQuiz'
 import Qrcode from '@/components/modules/qrcode'
 import ShowAllEvents from '@/components/ShowAllEvents'
 import ShowEvent from '@/components/ShowEvent'
@@ -24,6 +25,11 @@ export default new Router({
       path: '/addquestion',
       name: 'AddQuestion',
       component: AddQuestion
+    },    
+    {
+      path: '/event/:id/addquiz',
+      name: 'AddQuiz',
+      component: AddQuiz
     },
     {
       path: '/qrcode',

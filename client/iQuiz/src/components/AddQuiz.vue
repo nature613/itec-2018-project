@@ -1,7 +1,7 @@
 <template>
     <div class="hello">
         <div class="buttons-plate">
-            <h2>Add Question</h2>
+            <h2>Add Quiz</h2>
             <input type="text" v-model="body.title" placeholder="Title" required/>
             <select required v-model="body.scored">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
@@ -44,7 +44,7 @@
 
 
 export default {
-  name: 'AddQuestion',
+  name: 'AddQuiz',
     data () {
         return {
             body: {
