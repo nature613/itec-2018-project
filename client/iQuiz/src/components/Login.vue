@@ -6,7 +6,7 @@
         <input type="email" v-model="data.body.email" placeholder="Email" required/>
         <input type="password" v-model="data.body.password" placeholder="Password" required/>
       </form>
-      <span @click="signIn">LOGIN</span>
+      <span @click="login">LOGIN</span>
       <h5><router-link to='register' class="switchlink">Don't have an account? Register here</router-link></h5>
     </div>
   </div>
@@ -28,7 +28,11 @@ export default {
   },
   methods: {
       login: function(){
-
+          this.$http.post('http://localhost:4000/api/authenticate', this.data.body, {'timeout': 10000}).then((response)=>
+          {
+              console.log(response.data.data.token);
+              this.$store.state.token = response.data.data.token;
+          })
       }
   }
 }

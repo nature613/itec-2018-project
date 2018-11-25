@@ -28,7 +28,8 @@ export default {
   },
   methods: {
       register: function(){
-          this.$http.post('http://localhost:4000/register').then((status) =>
+          this.$http.post('http://localhost:4000/api/register', this.registerData, {'timeout': 10000})
+          .then((status) =>
           {alert("We've sent you a confirmation email! Check it out :D")})
       }
   }

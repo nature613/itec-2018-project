@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    token: 'lol'
+    token: ''
   },
   getters: {
     getToken: (state) => {
@@ -13,6 +13,7 @@ export const store = new Vuex.Store({
     }
   },
   mutations: {
+
   },
   actions: {
   }

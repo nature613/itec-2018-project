@@ -6,6 +6,8 @@ import router from './router'
 import axios from 'axios'
 import {store} from './store/index'
 
+axios.defaults.timeout = 1000;
+
 Vue.prototype.$http = axios.create({
   baseURL: 'https://localhost:4000/api/',
   timeout: 1000,

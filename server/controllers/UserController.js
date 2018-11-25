@@ -5,16 +5,16 @@ const mail = require('../helpers/mailconfig')
 
 module.exports = {
     create: function(req, res, next) {
-     
+        console.log(req.body)
         UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password }).then((user) => {
             const emailToken = jwt.sign(
                 {user: user._id}, 
                 req.app.get('secretKey'),
                 { expiresIn: '1h' }
             );
-            const url = 'http://localhost:4000/confirmation/' + emailToken;
+            const url = 'http://localhost:4000/api/confirm/' + emailToken;
             mail.transporter.sendMail({
-                from: 'Kevin De Vadder <devadderkevin@gmail.com>',
+                from: 'iQuiz <devadderkevin@gmail.com>',
                 to: user.email,
                 subject: 'Confirm account!',
                 html: 'Please click <a href="' + url +'">' + url + '</a>'
