@@ -3,8 +3,8 @@
         <div class="buttons-plate">
             <h2>Add Quiz</h2>
             <input type="text" v-model="body.title" placeholder="Title" required/>
-            <select required v-model="body.scored">
-                <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
+            <select required v-model="body.quizType">
+                <option disabled selected value style="color:rgba(255,255,255,.6);"> Quiz type </option>
                 <option>Scored</option>
                 <option>Non-scored</option>
             </select>
@@ -16,23 +16,37 @@
             </select>
             <input type="text" v-model="body.category" placeholder="Category" required/>
             
-            <div class="type-selector">
-                <div @click="body.questionType=0"><img src="../assets/baseline-text_fields-24px.svg"/></div>
-                <div @click="body.questionType=2"><img src="../assets/outline-check_box-24px.svg"/></div>
-                <div @click="body.questionType=1"><img src="../assets/outline-trip_origin-24px.svg"/></div>
-            </div>
-
-            <div  v-if="body.questionType==0">
-                <input type="text" v-model="body.correctAnswers[0]" placeholder="Correct answer" required style="width: 45vw;"/>
-            </div>
-
-            <div class="checkOptions" v-if="body.pickedCategory=='2'">
-
-            </div>
-
-            <div class="radioOptions" v-if="body.pickedCategory=='1'">
-
-            </div>
+            <h4>Rule 1</h4>
+            <input type="text" v-model="body.rules[0].numberofQuestionsInRule" placeholder="Number of questions" required/>
+            <select required v-model="body.rules[0].rule.typeOfQuestionsInRule">
+                <option disabled selected value style="color:rgba(255,255,255,.6);"> Questions type </option>
+                <option>Text</option>
+                <option>Radio</option>
+                <option>Check</option>
+            </select>
+            <select required v-model="body.rules[0].difficultyOfQuestionsInRule">
+                <option disabled selected value style="color:rgba(255,255,255,.6);"> Difficulty </option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+            <input type="text" v-model="body.rules[0].categoryOfQuestionsInRule" placeholder="Category" required/>
+            
+            <h4>Rule 2</h4>
+            <input type="text" v-model="body.rules[0].numberofQuestionsInRule" placeholder="Number of questions" required/>
+            <select required v-model="body.rules[0].rule.typeOfQuestionsInRule">
+                <option disabled selected value style="color:rgba(255,255,255,.6);"> Questions type </option>
+                <option>Text</option>
+                <option>Radio</option>
+                <option>Check</option>
+            </select>
+            <select required v-model="body.rules[0].difficultyOfQuestionsInRule">
+                <option disabled selected value style="color:rgba(255,255,255,.6);"> Difficulty </option>
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Hard</option>
+            </select>
+            <input type="text" v-model="body.rules[0].categoryOfQuestionsInRule" placeholder="Category" required/>
             <span @click="addQuestion">ADD</span>
 
             
@@ -42,7 +56,6 @@
 
 <script>
 
-
 export default {
   name: 'AddQuiz',
     data () {
@@ -50,25 +63,37 @@ export default {
             body: {
                 title: '',
                 difficulty: '',
-                scored: '',
+                quizType: '',
                 category: '',
                 correctAnswers: [],
                 questionType: 0,
+                rules:[{
+                    numberofQuestionsInRule: 0,
+                    typeOfQuestionsInRule: 0,
+                    difficultyOfQuestionsInRule: 0,
+                    categoryOfQuestionsInRule: 0
+                },
+                {
+                    numberofQuestionsInRule: 0,
+                    typeOfQuestionsInRule: 0,
+                    difficultyOfQuestionsInRule: 0,
+                    categoryOfQuestionsInRule: 0
+                },]
             },
             
         }
     },
     methods : {
         addQuestion: function(){
-            console.log(this.body.scored);
+            console.log(this.body.quizType);
             var payload = this.body;
-            if(this.body.scored == 'Scored') payload.scored = true;
-            else payload.scored = false;
+            if(this.body.quizType == 'Scored') payload.quizType = 0;
+            else payload.quizType = 1;
             if(this.body.difficulty == 'Easy') payload.difficulty = 0;
             else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
             else payload.difficulty=2;
             console.log(payload)
-            this.$http.post('http://localhost:4000/api/questions', payload).then(
+            this.$http.post('http://localhost:4000/api/quizes', payload).then(
                 (event) => {
                     console.log(event)
                 }
@@ -78,7 +103,8 @@ export default {
     mounted () {
         console.log(this.$store.state.token)
     },
-
+    components:{
+    }
 }
 </script>
 

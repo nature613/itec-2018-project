@@ -8,7 +8,8 @@ import ShowAllEvents from '@/components/ShowAllEvents'
 import ShowEvent from '@/components/ShowEvent'
 import About from '@/components/About'
 import Profile from '@/components/Profile'
-
+import Login from '@/components/Login'
+import Register from '@/components/Register'
 
 
 
@@ -50,6 +51,16 @@ export default new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile
+    },    
+    {
+      path: '/register',
+      name: 'Register',
+      component: Register
+    },    
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     },    
     {
       path: '/event/:id',
