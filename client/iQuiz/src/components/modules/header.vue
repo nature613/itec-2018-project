@@ -14,6 +14,9 @@
       </div>
       <ul>
         <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/addevent' class='item'>Add event</router-link></li>
+        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/events' class='item'>See events</router-link></li>
+        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/about' class='item'>About this project</router-link></li>
+        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/profile' class='item'>Profile</router-link></li>
       </ul>
   </div>
 	</div>

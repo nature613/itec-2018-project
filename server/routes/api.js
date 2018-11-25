@@ -16,9 +16,15 @@ router.delete('/event/:id', eventController.deleteEvent);
 
 
 //Quiz related
-router.post('/event/:id/quizzes', quizController.create);
-router.get('/event/:id/quizzes', quizController.getAll);
-router.get('/event/:id/quiz/:quizId', quizController.getOne);
+router.post('/quizzes', quizController.create);
+router.get('/quizzes', quizController.getAll);
+router.get('/quiz/:id', quizController.getOne);
+router.delete('/quiz/:id', quizController.deleteRules);
+router.put('/quiz/:id', quizController.updateRules);
+router.post('/validatequiz', quizController.validateQuiz);
+//get burned qr codes in frontend, call get quiz, see array there
+//generate qr codes
+//use qr code
 
 
 //Questions related
