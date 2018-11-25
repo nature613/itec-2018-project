@@ -23,9 +23,8 @@ router.delete('/quiz/:id', quizController.deleteRules);
 router.put('/quiz/:id', quizController.updateRules);
 router.post('/validatequiz', quizController.validateQuiz);
 //get burned qr codes in frontend, call get quiz, see array there
-//generate qr codes
-//use qr code
-
+router.post('/generateQR', quizController.generateQR);
+router.put('/useQR', quizController.useQR)
 
 //Questions related
 router.post('/questions', questionController.create);

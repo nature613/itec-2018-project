@@ -1,8 +1,8 @@
-const QuizModel = require('../models/Quiz');
+const QuizModel = require('../models/Quiz')
 const QuestionModel = require('../models/Question')
 const compare = require('../helpers/compare')
 const mail = require('../helpers/mailconfig')
-
+const randomstring = require('randomstring')
 
 module.exports = {
     create: function(req, res, next){
@@ -75,5 +75,31 @@ module.exports = {
         );
 
 
+    },
+    generateQR: function(req, res, next){
+        var quizId = req.body.quizID;
+        var QRId = randomstring.generate(10);
+        QuizModel.findOne({_id: quizId}, 'generatedQuizzes').then((quiz) =>{
+            console.log(quiz);
+            quiz.generatedQuizzes.push({QRid:QRId});
+            quiz.save();
+            res.send({QRId: QRId})
+        })
+        
+    },
+    useQR: function(req, res, next){
+        var quizId = req.body.quizID;
+        var QRId = req.body.QRId;
+
+        QuizModel.findOne({_id: quizId}, 'generatedQuizzes').then(
+            (quiz) => {
+                for (i in quiz.generatedQuizzes){
+                    console.log
+                    if (quiz.generatedQuizzes[i].QRid == QRId) quiz.generatedQuizzes[i].used = true
+                }
+                quiz.save()
+                res.send(quiz)
+            }
+        )
     }
 }

@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import AddEvent from '@/components/AddEvent'
+import AddQuestion from '@/components/AddQuestion'
 import Qrcode from '@/components/modules/qrcode'
 import ShowAllEvents from '@/components/ShowAllEvents'
 import ShowEvent from '@/components/ShowEvent'
 import About from '@/components/About'
 import Profile from '@/components/Profile'
+
 
 
 
@@ -17,6 +19,11 @@ export default new Router({
       path: '/addevent',
       name: 'AddEvent',
       component: AddEvent
+    },
+    {
+      path: '/addquestion',
+      name: 'AddQuestion',
+      component: AddQuestion
     },
     {
       path: '/qrcode',
@@ -33,11 +40,11 @@ export default new Router({
       name: 'About',
       component: About
     },    
-    // {
-    //   path: '/profile',
-    //   name: 'Profile',
-    //   component: Profile
-    // },    
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
+    },    
     {
       path: '/event/:id',
       name: 'ShowEvent',

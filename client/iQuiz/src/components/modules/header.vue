@@ -13,10 +13,11 @@
         <img src="../../assets/ic_arrow_back_white_24px.svg" id="arrow-back" @click="menuToggled = !menuToggled">
       </div>
       <ul>
-        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/addevent' class='item'>Add event</router-link></li>
-        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/events' class='item'>See events</router-link></li>
-        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/about' class='item'>About this project</router-link></li>
-        <li v-bind:class="{selected: selectedComponent=='/addevent'}"><router-link  to='/profile' class='item'>Profile</router-link></li>
+        <li><router-link  to='/addevent' class='item'>Add event</router-link></li>
+        <li><router-link  to='/addquestion' class='item'>Add question</router-link></li>
+        <li ><router-link  to='/events' class='item'>See events</router-link></li>
+        <li><router-link  to='/about' class='item'>About this project</router-link></li>
+        <li ><router-link  to='/profile' class='item'>Profile</router-link></li>
       </ul>
   </div>
 	</div>
@@ -60,6 +61,7 @@ export default {
     left: 0;
     z-index: 100;
     box-shadow: 0px 1px 10px rgb(0,0,0);
+    align-self: flex-start;
 }
 
 
@@ -112,6 +114,8 @@ h3{
 
 .sidebar ul li{
 cursor: pointer;
+  margin-bottom: 20px;
+
 }
 
 .nav-header{
@@ -120,6 +124,7 @@ cursor: pointer;
   align-items: center;
   padding: 0 3%;
   width: 85%;
+  align-items: center
 }
 
 #arrow-back{

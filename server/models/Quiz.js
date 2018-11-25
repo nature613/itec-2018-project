@@ -33,10 +33,13 @@ const QuizSchema = new Schema({
         type: Number
     },
     generatedQuizzes: [{
-        id: {
-            type: Number
+        QRid: {
+            type: String
         },
-        used: Boolean
+        used: {
+            type: Boolean,
+            default: false
+        }
     }],
     rules:[{
         numberofQuestionsInRule:{
