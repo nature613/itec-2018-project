@@ -5,6 +5,7 @@ import AddQuestion from '@/components/AddQuestion'
 import AddQuiz from '@/components/AddQuiz'
 import Qrcode from '@/components/modules/qrcode'
 import ShowAllEvents from '@/components/ShowAllEvents'
+import ShowAllQuestions from '@/components/ShowAllQuestions'
 import ShowEvent from '@/components/ShowEvent'
 import About from '@/components/About'
 import Profile from '@/components/Profile'
@@ -41,6 +42,11 @@ export default new Router({
       path: '/events',
       name: 'ShowAllEvents',
       component: ShowAllEvents
+    },
+    {
+      path: '/questions',
+      name: 'ShowAllQuestions',
+      component: ShowAllQuestions
     },
     {
       path: '/about',

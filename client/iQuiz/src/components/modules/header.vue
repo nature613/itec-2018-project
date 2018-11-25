@@ -16,6 +16,7 @@
         <li><router-link  to='/addevent' class='item'>Add event</router-link></li>
         <li><router-link  to='/addquestion' class='item'>Add question</router-link></li>
         <li ><router-link  to='/events' class='item'>See events</router-link></li>
+        <li ><router-link  to='/questions' class='item'>See questions</router-link></li>
         <li><router-link  to='/about' class='item'>About this project</router-link></li>
         <li ><router-link  to='/profile' class='item'>Profile</router-link></li>
       </ul>
