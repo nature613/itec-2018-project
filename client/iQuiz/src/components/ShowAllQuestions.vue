@@ -11,8 +11,7 @@
                 <div class="box" v-for="event in filteredEvents" :key="event._id">
                     <router-link v-bind:to="'/event/' + event._id + '/addquiz'" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
                     <h4>{{event.title}}</h4>
-                    <p>{{event.description}}</p>
-                    <router-link  v-bind:to="'/event/' + event._id"  class="router-text" id="event-link">Go to event</router-link>
+                    <p>{{event.correctAnswers[0]}}</p>
                 </div>
             </div>
         </div>
