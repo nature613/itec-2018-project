@@ -8,7 +8,7 @@ const validators = require('../helpers/validators')
 
 
 //Event related
-router.post('/events' , eventController.create);
+router.post('/events' , validators.validateAdmin ,eventController.create);
 router.get('/events', eventController.getAll);
 router.get('/event/:id', eventController.getEvent);
 router.put('/event/:id' , eventController.updateEvent);

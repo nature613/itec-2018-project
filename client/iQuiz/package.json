@@ -17,6 +17,7 @@
     "vue": "^2.5.2",
     "vue-qrcode-component": "^2.1.1",
     "vue-router": "^3.0.1",
+    "vue-slide-up-down": "^1.4.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

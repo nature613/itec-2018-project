@@ -18,7 +18,7 @@
             
             <h4>Rule 1</h4>
             <input type="text" v-model="body.rules[0].numberofQuestionsInRule" placeholder="Number of questions" required/>
-            <select required v-model="body.rules[0].rule.typeOfQuestionsInRule">
+            <select required v-model="body.rules[0].typeOfQuestionsInRule">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Questions type </option>
                 <option>Text</option>
                 <option>Radio</option>
@@ -34,7 +34,7 @@
             
             <h4>Rule 2</h4>
             <input type="text" v-model="body.rules[0].numberofQuestionsInRule" placeholder="Number of questions" required/>
-            <select required v-model="body.rules[0].rule.typeOfQuestionsInRule">
+            <select required v-model="body.rules[0].typeOfQuestionsInRule">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Questions type </option>
                 <option>Text</option>
                 <option>Radio</option>
@@ -47,7 +47,7 @@
                 <option>Hard</option>
             </select>
             <input type="text" v-model="body.rules[0].categoryOfQuestionsInRule" placeholder="Category" required/>
-            <span @click="addQuestion">ADD</span>
+            <add-button @button-clicked="addQuestion"></add-button>
 
             
         </div>
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import addButton from './modules/addButton'
 
 export default {
   name: 'AddQuiz',
@@ -103,8 +104,10 @@ export default {
     mounted () {
         console.log(this.$store.state.token)
     },
-    components:{
+    components: {
+        'add-button': addButton
     }
+
 }
 </script>
 
@@ -132,23 +135,6 @@ h2{
     align-content: center;
     justify-content: center;
     width: 75vw;
-}
-
-span{
-  font-size: 27px;
-  font-weight: 900;
-  background-color: #fff;
-  width: 15%;
-  margin: 10% auto;
-  text-align: center;
-  padding: 2vh 16vw;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #5F0683;
-}
-
-span:hover{
-  box-shadow: 0 0 20px #000;
 }
 
 input{

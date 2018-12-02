@@ -4,13 +4,13 @@
             <h2>Add Event</h2>
             <input type="text" v-model="body.title" placeholder="Title" required/>
             <input type="text" v-model="body.description" placeholder="Description" required/>
-            <span @click="addEvent">ADD</span>
-
+            <add-button @button-clicked="addEvent"></add-button>
         </div>
     </div>
 </template>
 
 <script>
+import addButton from './modules/addButton'
 
 
 export default {
@@ -29,7 +29,8 @@ export default {
             //console.log(this.body);
             this.$http.post('http://localhost:4000/api/events', this.body).then(
                 (event) => {
-                    console.log(event)
+                    console.log(event);
+                    this.$router.replace('ShowAllEvents');
                 }
             )
         }
@@ -37,7 +38,9 @@ export default {
     mounted () {
         console.log(this.$store.state.token)
     },
-
+    components: {
+        'add-button': addButton
+    }
 }
 </script>
 
@@ -64,23 +67,6 @@ h2{
     flex-direction: column;
     align-content: center;
     width: 75vw;
-}
-
-span{
-  font-size: 27px;
-  font-weight: 900;
-  background-color: #fff;
-  width: 15%;
-  margin: 10% auto;
-  text-align: center;
-  padding: 2vh 16vw;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #5F0683;
-}
-
-span:hover{
-  box-shadow: 0 0 20px #000;
 }
 
 input{

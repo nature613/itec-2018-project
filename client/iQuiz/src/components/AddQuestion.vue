@@ -2,38 +2,29 @@
     <div class="hello">
         <div class="buttons-plate">
             <h2>Add Question</h2>
+
             <input type="text" v-model="body.title" placeholder="Title" required/>
+
             <select required v-model="body.scored">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
                 <option>Scored</option>
                 <option>Non-scored</option>
             </select>
+
             <select required v-model="body.difficulty">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Difficulty </option>
                 <option>Easy</option>
                 <option>Medium</option>
                 <option>Hard</option>
             </select>
+
             <input type="text" v-model="body.category" placeholder="Category" required/>
             
-            <div class="type-selector">
-                <div @click="body.questionType=0"><img src="../assets/baseline-text_fields-24px.svg"/></div>
-                <div @click="body.questionType=2"><img src="../assets/outline-check_box-24px.svg"/></div>
-                <div @click="body.questionType=1"><img src="../assets/outline-trip_origin-24px.svg"/></div>
-            </div>
+            <type-selector @update-type="updateType" :question-type="body.questionType"></type-selector>
 
-            <div  v-if="body.questionType==0">
-                <input type="text" v-model="body.correctAnswers[0]" placeholder="Correct answer" required style="width: 45vw;"/>
-            </div>
-
-            <div class="checkOptions" v-if="body.pickedCategory=='2'">
-
-            </div>
-
-            <div class="radioOptions" v-if="body.pickedCategory=='1'">
-
-            </div>
-            <span @click="addQuestion">ADD</span>
+            <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers"></component>
+<!--  add a new component with some prop that tells if success or not, then display it and stuff when button is clicked. then go to see all questions page -->
+            <add-button @button-clicked="testButton"></add-button>
 
             
         </div>
@@ -41,6 +32,11 @@
 </template>
 
 <script>
+import questionTypeSelector from './modules/questions/questionTypeSelector'
+import textRule from './modules/questions/textRule'
+import radioRule from './modules/questions/radioRule'
+import checkboxRule from './modules/questions/checkboxRule'
+import addButton from './modules/addButton'
 
 
 export default {
@@ -52,33 +48,62 @@ export default {
                 difficulty: '',
                 scored: '',
                 category: '',
-                correctAnswers: [],
-                questionType: 0,
+                answers: [1,2,3],
+                correctAnswers: [80],
+                questionType: 1,
             },
             
         }
     },
     methods : {
-        addQuestion: function(){
-            console.log(this.body.scored);
-            var payload = this.body;
-            if(this.body.scored == 'Scored') payload.scored = true;
-            else payload.scored = false;
-            if(this.body.difficulty == 'Easy') payload.difficulty = 0;
-            else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
-            else payload.difficulty=2;
-            console.log(payload)
-            this.$http.post('http://localhost:4000/api/questions', payload).then(
-                (event) => {
-                    console.log(event)
-                }
-            )
+        // addQuestion: function(){
+        //     console.log(this.body.scored);
+        //     var payload = this.body;
+        //     if(this.body.scored == 'Scored') payload.scored = true;
+        //     else payload.scored = false;
+        //     if(this.body.difficulty == 'Easy') payload.difficulty = 0;
+        //     else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
+        //     else payload.difficulty=2;
+        //     console.log(payload)
+        //     this.$http.post('http://localhost:4000/api/questions', payload).then(
+        //         (event) => {
+        //             console.log(event)
+        //         }
+        //     )
+
+        // },
+        updateType: function(e){ 
+            this.body.questionType = e;
+            this.body.answers = [''];
+            this.body.correctAnswers = [''];
+        },
+        testButton: function(){
+            console.log(this.body)
         }
     },
     mounted () {
         console.log(this.$store.state.token)
     },
-
+    computed: {
+        selectRule: function(){
+            if (this.body.questionType == 0){
+                return 'text-rule'
+            }
+            else if(this.body.questionType == 1){
+                return 'radio-rule'
+            }
+            else{
+                return 'checkbox-rule'
+            }
+        }
+    },
+    components:{
+        'add-button': addButton,
+        'type-selector': questionTypeSelector,
+        'text-rule': textRule,
+        'radio-rule': radioRule,
+        'checkbox-rule': checkboxRule
+    }
 }
 </script>
 
@@ -163,28 +188,6 @@ option{
     color: #fff;
 }
 
-.type-selector{
-    margin-bottom: 10%;
-    border:0;
-    border-radius: 10px;
-    color: #fff;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    width: 55vw;
-}
-.type-selector div{
-    width: 20%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    background-color: #ba92cb;
-    border-radius: 10px;
-    padding: 15px;
-    margin: 0 5% ;
-
-
-}
 .options{
     margin-bottom: 10%;
     border:0;
