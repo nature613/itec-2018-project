@@ -27,6 +27,7 @@ export default {
   margin-top: 60px;
 }
 body, html{
-  margin: 0
+  margin: 0;
+  overflow-x: hidden;
 }
 </style>

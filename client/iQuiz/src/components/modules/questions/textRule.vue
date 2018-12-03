@@ -26,9 +26,18 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px 0;
+    border-radius: 10px;
+}
 
 input{
-    margin-bottom: 10%;
     padding: 15px;
     border:0;
     border-radius: 10px;
@@ -39,7 +48,7 @@ input{
 }
 
 input::placeholder{
-    color: rgba(255,255,255,.6);
+    color: rgba(255,255,255,.9);
 
 }
 

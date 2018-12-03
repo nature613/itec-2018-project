@@ -2,8 +2,10 @@ const express = require('express');
 const routes = require('./routes/api')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors')
 
 const app = express();
+
 
 app.set('secretKey', 'CHEIESECRETA');
 
@@ -12,7 +14,6 @@ mongoose.connect('mongodb://localhost/iQuiz', {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-
 
 app.use('/api', routes);
 

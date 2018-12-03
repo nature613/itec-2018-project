@@ -3,7 +3,8 @@
         <div class="buttons-plate">
             <h2>Add Question</h2>
 
-            <input type="text" v-model="body.title" placeholder="Title" required/>
+            <error-message :error-list="errors" validator="title"></error-message>
+            <input type="text" v-model="body.title" placeholder="Title" v-validate="'required'" name="title"/>
 
             <select required v-model="body.scored">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
@@ -11,20 +12,25 @@
                 <option>Non-scored</option>
             </select>
 
-            <select required v-model="body.difficulty">
+            <error-message :error-list="errors" validator="difficulty"></error-message>
+            <select v-model="body.difficulty" v-validate="'required'" name="difficulty">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Difficulty </option>
                 <option>Easy</option>
                 <option>Medium</option>
                 <option>Hard</option>
             </select>
 
-            <input type="text" v-model="body.category" placeholder="Category" required/>
+            <error-message :error-list="errors" validator="category"></error-message>
+            <input type="text" v-model="body.category" placeholder="Category" v-validate="'required'" name="category"/>
             
             <type-selector @update-type="updateType" :question-type="body.questionType"></type-selector>
 
-            <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers"></component>
+            <transition name="slide">
+                <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers"></component>
+            </transition>
+
 <!--  add a new component with some prop that tells if success or not, then display it and stuff when button is clicked. then go to see all questions page -->
-            <add-button @button-clicked="testButton"></add-button>
+            <add-button @button-clicked="addQuestion"></add-button>
 
             
         </div>
@@ -37,7 +43,7 @@ import textRule from './modules/questions/textRule'
 import radioRule from './modules/questions/radioRule'
 import checkboxRule from './modules/questions/checkboxRule'
 import addButton from './modules/addButton'
-
+import errorMessage from './modules/errorMessage'
 
 export default {
   name: 'AddQuestion',
@@ -48,38 +54,41 @@ export default {
                 difficulty: '',
                 scored: '',
                 category: '',
-                answers: [1,2,3],
-                correctAnswers: [80],
-                questionType: 1,
+                answers: [''],
+                correctAnswers: [''],
+                questionType: 0,
             },
             
         }
     },
     methods : {
-        // addQuestion: function(){
-        //     console.log(this.body.scored);
-        //     var payload = this.body;
-        //     if(this.body.scored == 'Scored') payload.scored = true;
-        //     else payload.scored = false;
-        //     if(this.body.difficulty == 'Easy') payload.difficulty = 0;
-        //     else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
-        //     else payload.difficulty=2;
-        //     console.log(payload)
-        //     this.$http.post('http://localhost:4000/api/questions', payload).then(
-        //         (event) => {
-        //             console.log(event)
-        //         }
-        //     )
-
-        // },
+        addQuestion: function(){
+            if(!this.errors.any()){
+                console.log(this.body.scored);
+                var payload = this.body;
+                if(this.body.scored == 'Scored') payload.scored = true;
+                else payload.scored = false;
+                if(this.body.difficulty == 'Easy') payload.difficulty = 0;
+                else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
+                else payload.difficulty=2;
+                console.log(payload)
+                this.$http.post('http://localhost:4000/api/questions', payload).then(
+                    (event) => {
+                        console.log(event);
+                        this.$router.push('questions')
+                    }
+                )
+            }
+            else console.log("error")
+        },
         updateType: function(e){ 
             this.body.questionType = e;
             this.body.answers = [''];
             this.body.correctAnswers = [''];
         },
-        testButton: function(){
-            console.log(this.body)
-        }
+        // testButton: function(){
+        //     console.log(this.body)
+        // }
     },
     mounted () {
         console.log(this.$store.state.token)
@@ -102,7 +111,8 @@ export default {
         'type-selector': questionTypeSelector,
         'text-rule': textRule,
         'radio-rule': radioRule,
-        'checkbox-rule': checkboxRule
+        'checkbox-rule': checkboxRule,
+        'error-message': errorMessage
     }
 }
 </script>
@@ -114,13 +124,14 @@ export default {
     margin: 0;
     height: 100%;
     padding-top: 5vh;
+    padding-bottom: 5vh;
     display: flex;
     justify-content: center;
     align-content: center
 }
 
 h2{
-    font-size: 2rem;
+    font-size: 3rem;
     color: #fff;
     flex-grow: 0;
 }
@@ -131,23 +142,6 @@ h2{
     align-content: center;
     justify-content: center;
     width: 75vw;
-}
-
-span{
-  font-size: 27px;
-  font-weight: 900;
-  background-color: #fff;
-  width: 15%;
-  margin: 10% auto;
-  text-align: center;
-  padding: 2vh 16vw;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #5F0683;
-}
-
-span:hover{
-  box-shadow: 0 0 20px #000;
 }
 
 input{
@@ -161,7 +155,7 @@ input{
 }
 
 input::placeholder{
-    color: rgba(255,255,255,.6);
+    color: rgba(255,255,255,.9);
 
 }
 
@@ -174,7 +168,7 @@ select{
     padding: 15px;
     border:0;
     border-radius: 10px;
-    color: rgba(255,255,255,.6);
+    color: rgba(255,255,255,.9);
 
   background-color: #ba92cb;
   background-image: url('../assets/ic_keyboard_arrow_down_white_24px.svg');
@@ -188,15 +182,27 @@ option{
     color: #fff;
 }
 
-.options{
-    margin-bottom: 10%;
-    border:0;
-    border-radius: 10px;
-    background-color: #fff;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    width: 45vw;
+.slide-enter-active, .slide-leave-active{
+    transition: all 1.2s ease-in-out
+}
+
+.slide-enter{
+    transform: translateX(-95vw);
+    opacity: 0;
+}
+.slide-leave-to{
+    transform: translateX(95vw);
+    opacity: 0;
+}
+.error-text{
+    align-self: flex-start;
+    color: #fff;
+    padding: 5px;
+    border-radius: 7px;
+    width: 99%;
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 10px;
 }
 @media (min-width: 900px) {
     .buttons-plate{

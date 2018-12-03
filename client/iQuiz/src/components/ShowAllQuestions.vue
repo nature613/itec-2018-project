@@ -11,7 +11,7 @@
                 <div class="box" v-for="event in filteredEvents" :key="event._id">
                     <router-link v-bind:to="'/event/' + event._id + '/addquiz'" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
                     <h4>{{event.title}}</h4>
-                    <p>{{event.correctAnswers[0]}}</p>
+                    <p v-for="answer in event.correctAnswers" :key='answer'>{{answer}}</p>
                 </div>
             </div>
         </div>
@@ -33,10 +33,11 @@ export default {
     },
     mounted () {
         console.log(this.$store.state.token);
-        this.$http.get('http://localhost:4000/api/questions', {headers: {'x-access-token': this.$store.token}}).then(
+        this.$http.get('http://localhost:4000/api/questions').then(
             (data) =>{
+                console.log('op')
                 this.events = data.data;
-                console.log(this.events);
+                console.log(data);
             }
         )
     },

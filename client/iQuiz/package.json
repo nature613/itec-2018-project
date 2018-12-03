@@ -14,10 +14,11 @@
     "axios": "^0.18.0",
     "babel-preset-es2015": "^6.24.1",
     "v-qrcode": "^1.0.3",
+    "vee-validate": "^2.1.3",
     "vue": "^2.5.2",
+    "vue-material-icon": "^1.0.1",
     "vue-qrcode-component": "^2.1.1",
     "vue-router": "^3.0.1",
-    "vue-slide-up-down": "^1.4.1",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
