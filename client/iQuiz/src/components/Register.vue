@@ -39,37 +39,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  overflow: auto;
-  position: relative;
-  margin-top: 15vh;
-  margin-bottom: 5vh;
-}
 
-.hello:before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  top: -10px;
-
-  display: block;
-  background-image: url('../assets/code-1839406.jpg');
-  background-size:cover;
-  width: 100%;
-  height: 110%;
-
-  -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
-}
 
 .buttons-plate{
   width: 319px;

@@ -1,12 +1,14 @@
 <template>
+<!-- to add picture and date support -->
     <div class="hello">
         <div class="buttons-plate">
             <h2>Add Question</h2>
 
             <error-message :error-list="errors" validator="title"></error-message>
-            <input type="text" v-model="body.title" placeholder="Title" v-validate="'required'" name="title"/>
+            <input type="text" v-model="body.title" placeholder="Title" v-validate="'required'" name="title" />
 
-            <select required v-model="body.scored">
+            <error-message :error-list="errors" validator="qtype"></error-message>
+            <select required v-model="body.scored" v-validate="'required'" name="qtype">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
                 <option>Scored</option>
                 <option>Non-scored</option>
@@ -25,12 +27,12 @@
             
             <type-selector @update-type="updateType" :question-type="body.questionType"></type-selector>
 
-            <transition name="slide">
+            <transition name="slide" mode="out-in">
                 <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers"></component>
             </transition>
 
 <!--  add a new component with some prop that tells if success or not, then display it and stuff when button is clicked. then go to see all questions page -->
-            <add-button @button-clicked="addQuestion"></add-button>
+            <add-button @button-clicked="addQuestion" text="ADD"></add-button>
 
             
         </div>
@@ -63,14 +65,15 @@ export default {
     },
     methods : {
         addQuestion: function(){
+            this.validateFields();
             if(!this.errors.any()){
-                console.log(this.body.scored);
+                // console.log(this.body.scored);
                 var payload = this.body;
                 if(this.body.scored == 'Scored') payload.scored = true;
                 else payload.scored = false;
                 if(this.body.difficulty == 'Easy') payload.difficulty = 0;
                 else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
-                else payload.difficulty=2;
+                else if(this.body.difficulty == 'Hard') payload.difficulty=2;
                 console.log(payload)
                 this.$http.post('http://localhost:4000/api/questions', payload).then(
                     (event) => {
@@ -86,9 +89,12 @@ export default {
             this.body.answers = [''];
             this.body.correctAnswers = [''];
         },
-        // testButton: function(){
-        //     console.log(this.body)
-        // }
+        validateFields: function(){
+            if(!this.body.title) this.errors.add({field:'title', msg:'The title field is required'});
+            if(!this.body.difficulty) this.errors.add({field:'difficulty', msg:'The difficulty field is required'});
+            if(!this.body.scored) this.errors.add({field:'qtype', msg:'The question type field is required'});
+            if(!this.body.category) this.errors.add({field:'category', msg:'The category field is required'});
+        }
     },
     mounted () {
         console.log(this.$store.state.token)
@@ -119,16 +125,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello{
-    background-color: #8E44AD;
-    margin: 0;
-    height: 100%;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    display: flex;
-    justify-content: center;
-    align-content: center
-}
+
 
 h2{
     font-size: 3rem;
@@ -183,7 +180,7 @@ option{
 }
 
 .slide-enter-active, .slide-leave-active{
-    transition: all 1.2s ease-in-out
+    transition: all .8s ease-in-out
 }
 
 .slide-enter{

@@ -1,31 +1,30 @@
 <template>
-    <div class="hello">
-        <div class="buttons-plate">
-            <h2>All questions</h2>
-            <input type="text" v-model="search" placeholder="Search">
-            <div class="events">
-                <div class="box">
-                    <img src="../assets/baseline-add-24px.svg" class="plus">
-                    <router-link to="/addquestion" class="router-text">Add new question</router-link>
-                </div>
-                <div class="box" v-for="event in filteredEvents" :key="event._id">
-                    <router-link v-bind:to="'/event/' + event._id + '/addquiz'" class="more"><img src="../assets/baseline-more_vert-24px.svg"></router-link>
-                    <h4>{{event.title}}</h4>
-                    <p v-for="answer in event.correctAnswers" :key='answer'>{{answer}}</p>
-                </div>
+<div class="hello">
+    <h2> Added questions </h2>
+    <div class="main-content">
+        <div class="query-filters">
+            <h3>Search:</h3>
+            <input type="text" v-model="search" placeholder="Search by title">
+            <question-filter/>
+        </div>
+        <div class="questions" v-bar="{preventParentScroll: true,scrollThrottle: 30}">
+            <div>
+            <question class="box" v-for="question in filteredQuestions" :key="question._id" :question="question"/>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
-
+import question from './modules/questions/question'
+import questionFilter from './modules/questions/questionFilter'
 
 export default {
   name: 'ShowAllQuestions',
     data () {
         return {
-            events: [],
+            questions: [],
             search: ''
         }
     },
@@ -36,136 +35,66 @@ export default {
         this.$http.get('http://localhost:4000/api/questions').then(
             (data) =>{
                 console.log('op')
-                this.events = data.data;
+                this.questions = data.data;
                 console.log(data);
             }
         )
     },
     computed: {
-        filteredEvents: function(){
-            return this.events.filter((event) =>{
-                return event.title.match(this.search);
+        filteredQuestions: function(){
+            return this.questions.filter((question) =>{
+                return question.title.toLowerCase().match(this.search.toLowerCase());
             });
         }
+    },
+    components: {
+        question,
+        questionFilter
     }
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.hello{
-    background-color: #8E44AD;
-    margin: 0;
-    padding-top: 5vh;
-    display: flex;
-    justify-content: center;
-    align-content: center
-}
+<style scoped lang="sass">
+    .hello 
+        padding: 2vh 0
+        flex-direction: column
+    
+    h2
+        font-size: 3rem
+        color: #fff
+        flex-grow: 0
+    
+    .main-content
+        display: flex
+        width: 85%
+        padding: 0 3vw
 
-h2{
-    font-size: 2rem;
-    color: #fff;
-    flex-grow: 0;
-}
-
-h4{
-    margin-top: 0;
-}
-.buttons-plate{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 75vw;
-}
+        .questions
+            flex-grow: .85
+            margin-left: 3vw
+            max-height: 150vh
 
 
-option{
-    color: #fff;
-}
+        .query-filters
+            flex-grow: .15
+            background: #BA92CB
+            border-radius: 10px
 
-.events{
-    flex-grow: 1;
-    margin-top: 10vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+            input[type="text"]
+                margin-bottom: 1%
+                padding: 15px 15px 15px 55px
+                border: 0
+                border-radius: 10px
+                color: #ba92cb
+                width: 70%
+                background-color: #FFF  
+                background-image: url('../assets/ic_search_white_24px.svg')
+                background-position: 10px 10px
+                background-repeat: no-repeat
+            
+            input::placeholder
+                color: #ba92cb
 
-}
-
-.box{
-    background-color: #D7CBCB;
-    width: 90%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-.more{
-    height: 30px;
-    width: 30px;
-    align-self: flex-end;
-    margin-top: 5px;
-    margin-right: 5px;
-    border-radius: 100%;
-    padding-top: 4px;
-}
-
-.more:hover{
-    background-color: rgba(186, 146, 203, 0.96);
-}
-.plus{
-    width: 60px;
-    height: 60px;
-    margin: 10px;
-}
-
-.router-text{
-    font-size: 1.5rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: rgba(186, 146, 203, 0.96);
-    margin-bottom: 2rem;
-}
-
-#event-link{
-    padding: 7px;
-    background-color: #fff;
-    color: #8E44AD;
-    border-radius: 9px;
-}
-
-#event-link:hover{
-  box-shadow: 0 0 20px #000;
-}
-
-
-input{
-    margin-bottom: 1%;
-    padding: 15px;
-    border:0;
-    border-radius: 10px;
-    color: #fff;
-    width: 70%;
-    background-color: #ba92cb;
-
-}
-
-input::placeholder{
-    color: rgba(255,255,255,.6);
-
-}
-
-@media (min-width: 900px) {
-    .buttons-plate{
-        width: 55vw;
-    }
-    .events{
-        width: 100%;
-    }
-    .box{
-        width: 100%;
-    }
-}
 </style>

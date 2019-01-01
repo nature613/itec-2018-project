@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <p v-if="errorList.has(validator)" class="error-text"><vue-material-icon name="error_outline" :size="14"></vue-material-icon>   {{ errorList.first(validator)}}</p>
-    </div>
+    <p v-if="errorList.has(validator)" class="error-text"><vue-material-icon name="error_outline" :size="14"></vue-material-icon>   {{ errorList.first(validator)}}</p>
 </template>
 
 <script>
@@ -27,7 +25,7 @@ export default {
     border-radius: 7px;
     width: 99%;
     margin: 0;
-    text-align: left;
+    /* text-align: left; */
     font-size: 14px;
     padding-top: 0;
     font-weight: bold;

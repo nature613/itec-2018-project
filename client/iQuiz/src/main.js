@@ -7,6 +7,7 @@ import axios from 'axios'
 import {store} from './store/index'
 import VueMaterialIcon from 'vue-material-icon'
 import VeeValidate from 'vee-validate';
+import Vuebar from 'vuebar';
 
 axios.defaults.timeout = 1000;
 
@@ -17,6 +18,7 @@ Vue.prototype.$http = axios.create({
 })
 Vue.config.productionTip = false
 
+Vue.use(Vuebar);
 Vue.use(VeeValidate)
 Vue.component(VueMaterialIcon.name, VueMaterialIcon)
 

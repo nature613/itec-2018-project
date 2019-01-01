@@ -1,11 +1,12 @@
 <template>
  <div>
-    <input type="text" v-model="correctAnswers[0]" placeholder="Correct answer" required />
+    <error-message :error-list="errors" validator="correct answer"></error-message>
+    <input type="text" v-model="correctAnswers[0]" placeholder="Correct answer" v-validate="'required'" name="correct answer" />
  </div>            
 </template>
 
 <script>
-
+import errorMessage from '../errorMessage'
 
 export default {
   name: 'textRule',
@@ -20,7 +21,10 @@ export default {
     mounted () {
         console.log(this.$store.state.token)
     },
-    props: ['correct-answers']
+    props: ['correct-answers'],
+    components: {
+        'error-message': errorMessage
+    }
 }
 </script>
 

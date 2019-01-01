@@ -79,10 +79,6 @@ export default {
   cursor: pointer;
 }
 
-h3{
-    color: #fff;
-		font-size: 2rem;
-}
 .push{
     margin-bottom: 10vh;
 }

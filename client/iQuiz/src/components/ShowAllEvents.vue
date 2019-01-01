@@ -54,15 +54,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.hello{
-    background-color: #8E44AD;
-    margin: 0;
-    padding-top: 5vh;
-    display: flex;
-    justify-content: center;
-    align-content: center
-}
-
 h2{
     font-size: 2rem;
     color: #fff;

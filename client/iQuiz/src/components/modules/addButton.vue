@@ -2,7 +2,7 @@
     <div>
  
 <!--  add a new component with some prop that tells if success or not, then display it and stuff when button is clicked. then go to see all questions page -->
-        <span @click="buttonClicked">ADD</span>
+        <span @click="buttonClicked">{{text}}</span>
 
     </div>
 </template>
@@ -20,7 +20,8 @@ export default {
         buttonClicked: function(){
             this.$emit('button-clicked');
         }
-    }
+    },
+    props:['text']
 }
 </script>
 
