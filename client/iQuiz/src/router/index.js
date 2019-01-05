@@ -11,7 +11,7 @@ import About from '@/components/About'
 import Profile from '@/components/Profile'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
-
+import EditQuestion from '@/components/EditQuestion'
 
 
 Vue.use(Router)
@@ -31,6 +31,16 @@ export default new Router({
       path: '/addquestion',
       name: 'AddQuestion',
       component: AddQuestion
+    },
+    {
+      path: '/questions',
+      name: 'ShowAllQuestions',
+      component: ShowAllQuestions
+    },
+    {
+      path: '/questions/edit/:id',
+      name: 'EditQuestion',
+      component: EditQuestion
     },    
     {
       path: '/event/:id/addquiz',
@@ -46,11 +56,6 @@ export default new Router({
       path: '/events',
       name: 'ShowAllEvents',
       component: ShowAllEvents
-    },
-    {
-      path: '/questions',
-      name: 'ShowAllQuestions',
-      component: ShowAllQuestions
     },
     {
       path: '/about',

@@ -5,7 +5,7 @@
         <div class="query-filters">
             <h3>Search:</h3>
             <input type="text" v-model="search" placeholder="Search by title">
-            <question-filter/>
+            <question-filter @filters-updated="updateQuestions"/>
         </div>
         <div class="questions" v-bar="{preventParentScroll: true,scrollThrottle: 30}">
             <div>
@@ -29,12 +29,22 @@ export default {
         }
     },
     methods : {
+        updateQuestions(e){
+            console.log(e);
+            this.$http.get('http://localhost:4000/api/questions', {params: e}).then(
+            (data) =>{
+                this.questions = data.data;
+                console.log(data);
+            }
+        )
+        },
+
     },
     mounted () {
         console.log(this.$store.state.token);
         this.$http.get('http://localhost:4000/api/questions').then(
             (data) =>{
-                console.log('op')
+                //console.log('op')
                 this.questions = data.data;
                 console.log(data);
             }
@@ -74,8 +84,11 @@ export default {
         .questions
             flex-grow: .85
             margin-left: 3vw
-            max-height: 150vh
+            max-height: 120vh
 
+            @media (max-width:900px)
+                max-height: none
+                margin: 3vh 0
 
         .query-filters
             flex-grow: .15
@@ -96,5 +109,9 @@ export default {
             
             input::placeholder
                 color: #ba92cb
+    @media (max-width: 900px)
+        .main-content
+            flex-direction: column
+        
 
 </style>

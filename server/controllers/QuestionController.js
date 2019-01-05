@@ -9,7 +9,7 @@ module.exports = {
         }).catch(next)
     },
     getAllQuestions: function(req, res, next){
-        console.log('poc')
+        // console.log('poc')
         QuestionModel.find(req.query).then(
             (questions) => {
                 res.send(questions)
