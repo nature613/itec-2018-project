@@ -64,23 +64,24 @@ export default {
         }
     },
     methods : {
-        addQuestion: function(){
+        async addQuestion(){
             this.validateFields();
             if(!this.errors.any()){
-                // console.log(this.body.scored);
                 var payload = this.body;
                 if(this.body.scored == 'Scored') payload.scored = true;
                 else payload.scored = false;
                 if(this.body.difficulty == 'Easy') payload.difficulty = 0;
                 else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
                 else if(this.body.difficulty == 'Hard') payload.difficulty=2;
-                console.log(payload)
-                this.$http.post('http://localhost:4000/api/questions', payload).then(
-                    (event) => {
-                        console.log(event);
-                        this.$router.push('questions')
-                    }
-                )
+                // console.log(payload)
+                try{
+                    const response = await this.$http.post('http://localhost:4000/api/questions', payload)
+                    console.log(response);
+                    this.$router.push('questions')
+                }
+                catch(err){
+                    console.log(err)
+                }
             }
             else console.log("error")
         },

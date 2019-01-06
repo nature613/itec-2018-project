@@ -64,7 +64,7 @@ export default {
         }
     },
     methods : {
-        editQuestion: function(){
+        async editQuestion(){
             this.validateFields();
             if(!this.errors.any()){
                 // console.log(this.body.scored);
@@ -74,13 +74,15 @@ export default {
                 if(this.body.difficulty == 'Easy') payload.difficulty = 0;
                 else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
                 else if(this.body.difficulty == 'Hard') payload.difficulty=2;
-                console.log(payload)
-                this.$http.put('http://localhost:4000/api/question/' + this.$route.params.id, payload).then(
-                    (event) => {
-                        console.log(event);
-                        this.$router.push('/questions')
-                    }
-                )
+                // console.log(payload)
+                try{
+                    const response = await this.$http.put(`http://localhost:4000/api/question/${this.$route.params.id}`, payload)
+                    console.log(response);
+                    this.$router.push('/questions')
+                }
+                catch(err){
+                    console.log(err)
+                }
             }
             else console.log("error")
         },
@@ -96,21 +98,21 @@ export default {
             if(!this.body.category) this.errors.add({field:'category', msg:'The category field is required'});
         }
     },
-    mounted () {
+    async mounted () {
         console.log(this.$store.state.token);
-        this.$http.get('http://localhost:4000/api/question/' + this.$route.params.id).then(
-            (response)=>{
-                var body = response.data
-                if(body.scored == true) body.scored = 'Scored';
-                else body.scored = 'Non-scored';
-                if(this.body.difficulty == 0) body.difficulty = 'Easy';
-                else if(this.body.difficulty == 1) body.difficulty = 'Medium';
-                else if(this.body.difficulty == 2) body.difficulty='Hard';
-                this.body = body
-            }
-        ).catch((error)=>{
+        try{
+            const response = await this.$http.get(`http://localhost:4000/api/question/${this.$route.params.id}`)
+            var body = response.data
+            if(body.scored == true) body.scored = 'Scored';
+            else body.scored = 'Non-scored';
+            if(this.body.difficulty == 0) body.difficulty = 'Easy';
+            else if(this.body.difficulty == 1) body.difficulty = 'Medium';
+            else if(this.body.difficulty == 2) body.difficulty='Hard';
+            this.body = body
+        }
+        catch(error){
             console.log(error)
-        })
+        }
     },
     computed: {
         selectRule: function(){

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="more">
-            <router-link v-bind:to="'/questions/edit/' + question._id"><img src="../../../assets/baseline-edit-24px.svg"></router-link>
+            <router-link v-bind:to="'/questions/edit/'+question._id"><img src="../../../assets/baseline-edit-24px.svg"></router-link>
             <img src="../../../assets/baseline-delete-24px.svg" class="trash" @click="deleteQuestion">
         </div>
         <div class="content">
@@ -49,16 +49,16 @@ export default {
         //console.log(this.question)
     },
     methods: {
-        deleteQuestion(){
+        async deleteQuestion(){
             if (confirm("Delete the question: " + this.question.title)) {
-                this.$http.delete('http://localhost:4000/api/question/' + this.question._id).then(
-                    (response)=>{
-                        alert("Success! The question has been deleted");
-                        this.$router.go()
-                    }
-                ).catch((error)=>{
+                try{
+                    const response = await this.$http.delete(`http://localhost:4000/api/question/${this.question._id}`)
+                    alert("Success! The question has been deleted");
+                    this.$router.go();
+                }
+                catch(error){
                     console.log(error)
-                })
+                }
             }
         }
     },

@@ -29,26 +29,20 @@ export default {
         }
     },
     methods : {
-        updateQuestions(e){
+        async updateQuestions(e){
             console.log(e);
-            this.$http.get('http://localhost:4000/api/questions', {params: e}).then(
-            (data) =>{
-                this.questions = data.data;
-                console.log(data);
-            }
-        )
+            const data = await this.$http.get('http://localhost:4000/api/questions', {params: e})
+            this.questions = data.data;
+            // console.log(data);
         },
 
     },
-    mounted () {
+    async mounted () {
         console.log(this.$store.state.token);
-        this.$http.get('http://localhost:4000/api/questions').then(
-            (data) =>{
-                //console.log('op')
-                this.questions = data.data;
-                console.log(data);
-            }
-        )
+        const data = await this.$http.get('http://localhost:4000/api/questions')
+        this.questions = data.data;
+        // console.log(data);
+
     },
     computed: {
         filteredQuestions: function(){
