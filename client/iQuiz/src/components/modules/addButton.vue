@@ -25,25 +25,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-div{
-  margin: 9% auto;
+<style scoped lang='sass'>
+    div
+        margin: 9% auto;
 
-}
-span{
-  font-size: 27px;
-  font-weight: 900;
-  background-color: #fff;
-  width: 15%;
-  text-align: center;
-  padding: 2vh 16vw;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #5F0683;
-}
-
-span:hover{
-  box-shadow: 0 0 20px #000;
-}
-
+    span
+        font-size: 27px;
+        font-weight: 900;
+        background-color: #fff;
+        width: 15%;
+        text-align: center;
+        padding: 2vh 16vw;
+        border-radius: 10px;
+        cursor: pointer;
+        color: #5F0683;
+        
+        &hover
+            box-shadow: 0 0 20px #000;
+    
 </style>

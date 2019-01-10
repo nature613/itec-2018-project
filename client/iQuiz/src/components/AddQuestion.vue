@@ -127,87 +127,70 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang='sass'>
+    h2
+        font-size: 3rem;
+        color: #fff;
+        flex-grow: 0;
 
+    .buttons-plate
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        width: 75vw;
 
-h2{
-    font-size: 3rem;
-    color: #fff;
-    flex-grow: 0;
-}
+    input
+        margin-bottom: 10%;
+        padding: 15px;
+        border: 0;
+        border-radius: 10px;
+        color: #fff;
+        background-color: #ba92cb;
+        &::placeholder
+            color: rgba(255,255,255,.9);
 
-.buttons-plate{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    width: 75vw;
-}
+    select
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        padding: 15px;
+        border: 0;
+        border-radius: 10px;
+        color: rgba(255,255,255,.9);
+        background-color: #ba92cb;
+        background-image: url('../assets/ic_keyboard_arrow_down_white_24px.svg');
+        background-position: 95% center; 
+        background-repeat: no-repeat;
+        margin-bottom: 10%;
 
-input{
-    margin-bottom: 10%;
-    padding: 15px;
-    border:0;
-    border-radius: 10px;
-    color: #fff;
-    background-color: #ba92cb;
+    option
+        color: #fff;
 
-}
+    .slide-enter-active, .slide-leave-active
+        transition: all .8s ease-in-out
 
-input::placeholder{
-    color: rgba(255,255,255,.9);
-
-}
-
-select{
-  appearance:none;
-  -webkit-appearance:none;
-  -moz-appearance:none;
-  -ms-appearance:none;
-  -o-appearance:none;
-    padding: 15px;
-    border:0;
-    border-radius: 10px;
-    color: rgba(255,255,255,.9);
-
-  background-color: #ba92cb;
-  background-image: url('../assets/ic_keyboard_arrow_down_white_24px.svg');
-  background-position: 95% center; 
-  background-repeat: no-repeat;
-    margin-bottom: 10%;
-
-}
-
-option{
-    color: #fff;
-}
-
-.slide-enter-active, .slide-leave-active{
-    transition: all .8s ease-in-out
-}
-
-.slide-enter{
-    transform: translateX(-95vw);
-    opacity: 0;
-}
-.slide-leave-to{
-    transform: translateX(95vw);
-    opacity: 0;
-}
-.error-text{
-    align-self: flex-start;
-    color: #fff;
-    padding: 5px;
-    border-radius: 7px;
-    width: 99%;
-    margin-bottom: 0;
-    text-align: left;
-    font-size: 10px;
-}
-@media (min-width: 900px) {
-    .buttons-plate{
-        width: 55vw;
-        
-    }
-}
+    .slide-enter
+        transform: translateX(-95vw);
+        opacity: 0;
+    
+    .slide-leave-to
+        transform: translateX(95vw);
+        opacity: 0;
+    
+    .error-text
+        align-self: flex-start;
+        color: #fff;
+        padding: 5px;
+        border-radius: 7px;
+        width: 99%;
+        margin-bottom: 0;
+        text-align: left;
+        font-size: 10px;
+    
+    @media (min-width: 900px) 
+        .buttons-plate
+            width: 55vw;
 </style>

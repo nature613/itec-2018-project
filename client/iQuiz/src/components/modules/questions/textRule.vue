@@ -29,31 +29,24 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px 0;
-    border-radius: 10px;
-}
+<style scoped lang='sass'>
+    div
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px 0;
+        border-radius: 10px;
 
-input{
-    padding: 15px;
-    border:0;
-    border-radius: 10px;
-    color: #fff;
-    background-color: #ba92cb;
-    width: 80%;
-
-}
-
-input::placeholder{
-    color: rgba(255,255,255,.9);
-
-}
-
+    input
+        padding: 15px;
+        border: 0;
+        border-radius: 10px;
+        color: #fff;
+        background-color: #ba92cb;
+        width: 80%;
+        &::placeholder
+            color: rgba(255,255,255,.9);
 </style>

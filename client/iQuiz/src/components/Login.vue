@@ -56,106 +56,84 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.hello{
-  height: 100vh;
-}
-.buttons-plate{
-  width: 319px;
-  height: 501px;
-  background-color: rgba(186, 146, 203, 0.6);
-  border-radius: 28px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
+<style scoped lang="sass">
+  .hello
+    height: 100vh
 
-h2{
-  font-weight: bold;
-  font-size: 48px;
-  margin-top: 20%;
-  text-align: center;
-  color: #fff
-}
+  .buttons-plate
+    width: 319px
+    height: 501px
+    background-color: rgba(186, 146, 203, 0.6)
+    border-radius: 28px
+    display: flex
+    align-items: center
+    flex-direction: column
 
-span{
-  font-size: 27px;
-  font-weight: 900;
-  background-color: #8E44AD;
-  width: 55%;
-  margin: 10% auto;
-  text-align: center;
-  padding: 3% 15%;
-  border-radius: 10px;
-  cursor: pointer;
-  color: #fff;
-}
+    form
+    display: flex
+    flex-direction: column
 
-span:hover{
-  box-shadow: 0 0 20px #000;
-}
+  h2
+    font-weight: bold
+    font-size: 48px
+    margin-top: 20%
+    text-align: center
+    color: #fff
 
-.buttons-plate form{
-  display: flex;
-  flex-direction: column;
-}
+  span
+    font-size: 27px
+    font-weight: 900
+    background-color: #8E44AD
+    width: 55%
+    margin: 10% auto
+    text-align: center
+    padding: 3% 15%
+    border-radius: 10px
+    cursor: pointer
+    color: #fff
+    
+    &:hover
+      box-shadow: 0 0 20px #000
 
-input[type="email"], input[type='password']{
-  margin-bottom: 10%;
-  padding: 15px 15px 15px 55px;
-  border:0;
-  border-radius: 10px;
-  color: #fff;
-}
+  input
+    margin-bottom: 10%
+    padding: 15px 15px 15px 55px
+    border: 0
+    border-radius: 10px
+    color: #fff
+    background-color: rgba(141, 68, 173, 0.644)
+    background-position: 10px 10px
+    background-repeat: no-repeat
 
-input[type="email"]::placeholder, input[type='password']::placeholder{
-  color: rgba(255,255,255,.6);
-}
+    &::placeholder
+      color: rgba(255,255,255,.6)
 
-input[type="email"]{
-  background-color: rgba(141, 68, 173, 0.644);
-  background-image: url('../assets/ic_email_white_24px.svg');
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-}
+    &[type="email"]
+      background-image: url('../assets/ic_email_white_24px.svg')
 
-input[type='password']{
-  background-color: rgba(141, 68, 173, 0.644);
-  background-image: url('../assets/ic_lock_white_24px.svg');
-  background-position: 10px 10px; 
-  background-repeat: no-repeat;
-}
+    &[type='password']
+      background-image: url('../assets/ic_lock_white_24px.svg')
 
-.switchlink{
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer
-}
+  .switchlink
+    color: #fff
+    text-decoration: none
+    cursor: pointer
 
-.switchlink:hover{
-  color: #8E44AD;
-}
+    &:hover
+      color: #8E44AD
 
-@media (min-width: 900px){
-  .buttons-plate{
-    width: 45%;
-    height: 80%;
-  }
 
-  input[type="email"], input[type='password']{
-    margin-bottom: 10%;
-    padding: 15px 15px 15px 55px;
-    border:0;
-    border-radius: 10px;
-    width: 25vw;
-  }
-
-  h2{
-    margin-top: 5%;
-  }
-
-  span{
-    margin: 5% auto;
-  }
-}
+  @media (min-width: 900px)
+    .buttons-plate
+      width: 45%
+      height: 90%
+    
+    input
+      width: 25vw
+    
+    h2
+      margin-top: 5%
+    
+    span
+      margin: 5% auto
 </style>

@@ -37,48 +37,41 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 5px;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 15px 0;
-    border-radius: 10px;
-}
-input{
-    margin-bottom: 10%;
-    padding: 15px;
-    border:0;
-    border-radius: 10px;
-    color: #fff;
-    background-color: #ba92cb;
-    width: 80%;
+<style scoped lang='sass'>
+    div
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+        padding: 15px 0;
+        border-radius: 10px;
+    
+    input
+        margin-bottom: 10%;
+        padding: 15px;
+        border: 0;
+        border-radius: 10px;
+        color: #fff;
+        background-color: #ba92cb;
+        width: 80%;
+        &::placeholder
+            color: rgba(255,255,255,.6);
 
-}
-
-input::placeholder{
-    color: rgba(255,255,255,.6);
-
-}
-h3{
-    margin-top: 0
-}
-P{
-    margin-top: 0;
-    border: 3px solid #fff;
-    width: 50%;
-    padding: 2%;
-    border-radius: 10px;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold
-
-}
-p:hover{
-    color: #ba92cb;
-    background-color: #fff;
-    color: #8E44AD;
-}
+    h3
+        margin-top: 0
+    
+    P
+        margin-top: 0;
+        border: 3px solid #fff;
+        width: 50%;
+        padding: 2%;
+        border-radius: 10px;
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold
+        &:hover
+            color: #ba92cb;
+            background-color: #fff;
+            color: #8E44AD;
 </style>
