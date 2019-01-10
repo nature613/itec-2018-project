@@ -3,17 +3,28 @@
     <div class="buttons-plate">
       <form>
         <h2>Register</h2>
-        <input type="text" v-model="registerData.name" placeholder="Full name" required/>
-        <input type="password" v-model="registerData.password" placeholder="Password" required/>
-        <input type="email" v-model="registerData.email" placeholder="Email address" required/>
+
+        <error-message :error-list="errors" validator="name"></error-message>
+        <input type="text" v-model="registerData.name" placeholder="Full name" v-validate="'required'" name='name'/>
+
+        <error-message :error-list="errors" validator="password"></error-message>
+        <input type="password" v-model="registerData.password" placeholder="Password" v-validate="'required|min:8'" name='password'/>
+
+        <error-message :error-list="errors" validator="email"></error-message>
+        <input type="email" v-model="registerData.email" placeholder="Email address"  v-validate="'required|email'" name='email'/>
+      
       </form>
+
       <span @click='register'>REGISTER</span>
-      <h5><router-link to='login' class="switchlink">Already have an account? Login</router-link></h5>
+      <router-link to='login' class="switchlink" tag='h5'>Already have an account? Login</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
+
+import errorMessage from './modules/errorMessage'
 
 export default {
   name: 'Register',
@@ -27,11 +38,21 @@ export default {
     }
   },
   methods: {
-      register: function(){
-          this.$http.post('http://localhost:4000/api/register', this.registerData, {'timeout': 10000})
-          .then((status) =>
-          {alert("We've sent you a confirmation email! Check it out :D")})
+      async register(){
+        if(!this.errors.any() && !(this.registerData.email === '') && !(this.registerData.password === '') && !(this.registerData.name === '')){
+          try{
+            const status = await AuthenticationService.register(this.registerData)
+            alert("We've sent you a confirmation email! Check it out :D")
+            this.$router.push('/login')
+          }
+          catch(err){
+            console.log(err)
+          }
+        }
       }
+    },
+  components:{
+    errorMessage
   }
 }
 
@@ -56,6 +77,7 @@ h2{
   font-size: 48px;
   margin-top: 20%;
   text-align: center;
+  color: #fff
 }
 
 span{
@@ -116,10 +138,11 @@ input[type='password']{
 .switchlink{
   color: #fff;
   text-decoration: none;
+  cursor: pointer
 }
 
 .switchlink:hover{
-  color: #2880C7;
+  color: #8E44AD;
 }
 
 select{

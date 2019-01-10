@@ -3,19 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import axios from 'axios'
 import {store} from './store/index'
 import VueMaterialIcon from 'vue-material-icon'
 import VeeValidate from 'vee-validate';
 import Vuebar from 'vuebar';
 
-axios.defaults.timeout = 1000;
 
-Vue.prototype.$http = axios.create({
-  baseURL: 'https://localhost:4000/api/',
-  timeout: 1000,
-  headers: {'x-access-token': 'this.$store.state.token'}
-})
 Vue.config.productionTip = false
 
 Vue.use(Vuebar);

@@ -19,9 +19,10 @@ module.exports = {
         jwt.verify(req.headers['x-access-token'], req.app.get('secretKey'), function (err, decoded) {
             if (err) {
                 res.status(400).json({ status: "error", message: err.message, data: null });
+                console.log('this is me')
             } 
-            else if(decoded.isAdmin != true){
-                res.status(403).json({status: "error", message: "Forbidden"})
+            else if(decoded.admin != true){
+                res.status(403).json({status: "error", message: "Forbidden"});
             }
             else {
                 // add user id to request

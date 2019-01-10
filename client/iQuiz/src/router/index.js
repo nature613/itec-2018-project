@@ -12,7 +12,7 @@ import Profile from '@/components/Profile'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import EditQuestion from '@/components/EditQuestion'
-
+import Dashboard from '@/components/Dashboard'
 
 Vue.use(Router)
 
@@ -82,5 +82,10 @@ export default new Router({
       name: 'ShowEvent',
       component: ShowEvent
     },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard
+    }
   ]
 })

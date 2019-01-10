@@ -27,8 +27,8 @@ router.post('/generateQR', quizController.generateQR);
 router.put('/useQR', quizController.useQR)
 
 //Questions related
-router.post('/questions' , questionController.create);
-router.get('/questions' , questionController.getAllQuestions);
+router.post('/questions', questionController.create);
+router.get('/questions', questionController.getAllQuestions);
 router.get('/questions/:resource' , questionController.getResource);
 router.get('/question/:id' , questionController.getQuestion);
 router.put('/question/:id' , questionController.updateQuestion);

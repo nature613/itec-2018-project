@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import QuestionService from '@/services/QuestionService'
+
 import questionTypeSelector from './modules/questions/questionTypeSelector'
 import textRule from './modules/questions/textRule'
 import radioRule from './modules/questions/radioRule'
@@ -75,7 +77,7 @@ export default {
                 else if(this.body.difficulty == 'Hard') payload.difficulty=2;
                 // console.log(payload)
                 try{
-                    const response = await this.$http.post('http://localhost:4000/api/questions', payload)
+                    const response = await QuestionService.postQuestion(payload)
                     console.log(response);
                     this.$router.push('questions')
                 }

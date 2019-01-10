@@ -33,7 +33,7 @@
 </template>
 
 <script>
-
+import QuestionService from '@/services/QuestionService'
 
 export default {
     data(){
@@ -52,7 +52,7 @@ export default {
         async deleteQuestion(){
             if (confirm("Delete the question: " + this.question.title)) {
                 try{
-                    const response = await this.$http.delete(`http://localhost:4000/api/question/${this.question._id}`)
+                    const response = await QuestionService.deleteQuestion(this.question._id)
                     alert("Success! The question has been deleted");
                     this.$router.go();
                 }

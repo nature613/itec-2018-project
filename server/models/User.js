@@ -29,7 +29,8 @@ const UserSchema = new Schema({
     confirmed: {
         type: Boolean,
         default: false
-    }
+    },
+    completedQuizzes:[String]
 });
 
 // hash user password before saving into database

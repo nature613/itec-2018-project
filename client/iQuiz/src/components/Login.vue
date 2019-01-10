@@ -3,37 +3,54 @@
     <div class="buttons-plate">
       <form>
         <h2>Log in</h2>
-        <input type="email" v-model="data.body.email" placeholder="Email" required/>
-        <input type="password" v-model="data.body.password" placeholder="Password" required/>
+
+        <error-message :error-list="errors" validator="email"></error-message>
+        <input type="email" v-model="body.email" placeholder="Email" v-validate="'required|email'" name='email'/>
+
+        <error-message :error-list="errors" validator="password"></error-message>
+        <input type="password" v-model="body.password" placeholder="Password" v-validate="'required'" name='password'/>
+      
       </form>
+
       <span @click="login">LOGIN</span>
-      <h5><router-link to='register' class="switchlink">Don't have an account? Register here</router-link></h5>
+      <router-link to='register' class="switchlink" tag='h5'>Don't have an account? Register here</router-link>
     </div>
   </div>
 </template>
 
 <script>
+import AuthenticationService from '@/services/AuthenticationService'
+
+import errorMessage from './modules/errorMessage'
 
 export default {
   name: 'Login',
   data () {
-  return{
-    data: {
-        body: {
-            email: '',
-            password: ''
-        },
-    },
-  }
+    return{
+      body: {
+        email: '',
+        password: ''
+      },
+    }
   },
   methods: {
-      login: function(){
-          this.$http.post('http://localhost:4000/api/authenticate', this.data.body, {'timeout': 10000}).then((response)=>
-          {
-              console.log(response.data.data.token);
-              this.$store.state.token = response.data.data.token;
-          })
+    async login(){
+      if(!this.errors.any() && !(this.body.email === '') && !(this.body.password === '')){
+        try{
+          const response = await AuthenticationService.login(this.body)
+          // console.log(response);
+          this.$store.commit('setToken', response.data.data.token);
+          this.$store.commit('setUser', response.data.data.user);
+          this.$router.push('/dashboard')
+        }
+        catch(err){
+          console.log(err)
+        }
       }
+    }
+  },
+  components:{
+    errorMessage
   }
 }
 </script>
@@ -58,6 +75,7 @@ h2{
   font-size: 48px;
   margin-top: 20%;
   text-align: center;
+  color: #fff
 }
 
 span{
@@ -111,10 +129,11 @@ input[type='password']{
 .switchlink{
   color: #fff;
   text-decoration: none;
+  cursor: pointer
 }
 
 .switchlink:hover{
-  color: #2880C7;
+  color: #8E44AD;
 }
 
 @media (min-width: 900px){

@@ -27,6 +27,11 @@ const QuestionSchema = new Schema({
     category: {
         type: String,
         lowercase: true
+    },
+    createdAt:{
+        type: Date,
+        required: true,
+        default: Date.now 
     }
 })
 

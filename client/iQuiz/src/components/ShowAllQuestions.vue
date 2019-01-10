@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import QuestionService from '@/services/QuestionService'
+
 import question from './modules/questions/question'
 import questionFilter from './modules/questions/questionFilter'
 
@@ -30,8 +32,8 @@ export default {
     },
     methods : {
         async updateQuestions(e){
-            console.log(e);
-            const data = await this.$http.get('http://localhost:4000/api/questions', {params: e})
+            // console.log(e);
+            const data = await QuestionService.getAllQuestions(e)
             this.questions = data.data;
             // console.log(data);
         },
@@ -39,7 +41,7 @@ export default {
     },
     async mounted () {
         console.log(this.$store.state.token);
-        const data = await this.$http.get('http://localhost:4000/api/questions')
+        const data = await QuestionService.getAllQuestions({})
         this.questions = data.data;
         // console.log(data);
 

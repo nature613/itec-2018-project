@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import QuestionService from '@/services/QuestionService'
+
 import questionTypeSelector from './modules/questions/questionTypeSelector'
 import textRule from './modules/questions/textRule'
 import radioRule from './modules/questions/radioRule'
@@ -76,7 +78,7 @@ export default {
                 else if(this.body.difficulty == 'Hard') payload.difficulty=2;
                 // console.log(payload)
                 try{
-                    const response = await this.$http.put(`http://localhost:4000/api/question/${this.$route.params.id}`, payload)
+                    const response = await QuestionService.updateQuestion(this.$route.params.id, payload)
                     console.log(response);
                     this.$router.push('/questions')
                 }
@@ -101,7 +103,7 @@ export default {
     async mounted () {
         console.log(this.$store.state.token);
         try{
-            const response = await this.$http.get(`http://localhost:4000/api/question/${this.$route.params.id}`)
+            const response = await QuestionService.getOneQuestion(this.$route.params.id)
             var body = response.data
             if(body.scored == true) body.scored = 'Scored';
             else body.scored = 'Non-scored';
