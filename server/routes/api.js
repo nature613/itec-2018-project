@@ -27,12 +27,12 @@ router.post('/generateQR', quizController.generateQR);
 router.put('/useQR', quizController.useQR)
 
 //Questions related
-router.post('/questions', questionController.create);
-router.get('/questions', questionController.getAllQuestions);
-router.get('/questions/:resource' , questionController.getResource);
-router.get('/question/:id' , questionController.getQuestion);
-router.put('/question/:id' , questionController.updateQuestion);
-router.delete('/question/:id' , questionController.deleteQuestion);
+router.post('/questions' , validators.validateAdmin, questionController.create);
+router.get('/questions' , validators.validateAdmin, questionController.getAllQuestions);
+router.get('/questions/:resource' , validators.validateAdmin , questionController.getResource);
+router.get('/question/:id' , validators.validateAdmin , validators.validateAdmin , questionController.getQuestion);
+router.put('/question/:id' , validators.validateAdmin , questionController.updateQuestion);
+router.delete('/question/:id' , validators.validateAdmin , questionController.deleteQuestion);
 
 
 //User related

@@ -37,10 +37,11 @@ export default {
     async login(){
       if(!this.errors.any() && !(this.body.email === '') && !(this.body.password === '')){
         try{
-          const response = await AuthenticationService.login(this.body)
-          // console.log(response);
-          this.$store.commit('setToken', response.data.data.token);
-          this.$store.commit('setUser', response.data.data.user);
+          const response = (await AuthenticationService.login(this.body)).data
+          // console.log(response.data);
+          localStorage.setItem('user',JSON.stringify(response.data.user))
+          localStorage.setItem('jwt',response.data.token)
+          this.$store.commit('switchUserState')
           this.$router.push('/dashboard')
         }
         catch(err){

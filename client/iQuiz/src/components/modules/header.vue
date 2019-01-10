@@ -34,18 +34,19 @@ export default {
     return {
       menuToggled: false,
       selectedComponent: this.$route.path,
-
     }
   },
 	computed: {
 	    isUserLoggedIn(){
-        return this.$store.getters.getUserStatus
+        return this.$store.getters.getUserState
       }
   },
 	methods: {
   		logOut(){
-        this.$store.commit('logoutUser');
-        this.$router.push('/login')
+        localStorage.removeItem('user')
+        localStorage.removeItem('jwt');
+        this.$store.commit('switchUserState')
+        this.$router.push('login')
       }
   },
   mounted(){

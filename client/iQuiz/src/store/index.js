@@ -7,33 +7,16 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   strict: true,
   state: {
-    token: '',
-    user: {},
     isUserLoggedIn: false
   },
   getters: {
-    getToken: (state) => {
-      return state.token
-    },
-    getUser: (state) =>{
-      return state.user
-    },
-    getUserStatus: (state) =>{
+    getUserState(state){
       return state.isUserLoggedIn
     }
   },
   mutations: {
-    setToken: (state, payload) => {
-      state.token = payload;
-      state.isUserLoggedIn = true
-    },
-    setUser: (state, payload) => {
-      state.user = payload;
-    },
-    logoutUser: (state) => {
-      state.token = '';
-      state.user = {};
-      state.isUserLoggedIn = false
+    switchUserState(state, payload){
+      state.isUserLoggedIn = !state.isUserLoggedIn
     }
   },
   actions: {
