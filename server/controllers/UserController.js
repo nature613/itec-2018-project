@@ -4,15 +4,16 @@ const jwt = require('jsonwebtoken');
 const mail = require('../helpers/mailconfig')
 
 module.exports = {
-    create: function(req, res, next) {
-        console.log(req.body)
-        UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password }).then((user) => {
+    async create(req, res, next) {
+        // console.log(req.body)
+        try{
+            const user = await UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password })
             const emailToken = jwt.sign(
                 {user: user._id}, 
                 req.app.get('secretKey'),
                 { expiresIn: '1h' }
             );
-            const url = 'http://localhost:4000/api/confirm/' + emailToken;
+            const url = `http://localhost:4000/api/confirm/${emailToken}`;
             mail.transporter.sendMail({
                 from: 'iQuiz <devadderkevin@gmail.com>',
                 to: user.email,
@@ -24,31 +25,38 @@ module.exports = {
                 }
             ).catch(next)
         }
-        );
-
-
+        catch(err){
+            next(err)
+        }
     },
-   authenticate: function(req, res, next) {
-        UserModel.findOne({email:req.body.email}, function(err, userInfo){
-            if (err) {
-                next(err);
-            }
-             else {
-                if(bcrypt.compareSync(req.body.password, userInfo.password)) {
-                    if (userInfo.confirmed == false){
-                        res.status(401).send({"error": "user not yet confirmed"})
-                    }
-                    else{
-                    const token = jwt.sign({id: userInfo._id, admin: userInfo.admin}, req.app.get('secretKey'), { expiresIn: '1h' });
-                    res.json({status:"success", message: "user found!!!", data:{user: userInfo, token:token}});
-                    }
-                }else{
-                res.json({status:"error", message: "Invalid email/password!!!", data:null});
+   async authenticate(req, res, next) {
+       try{
+            const user = await UserModel.findOne({email:req.body.email});
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                if (user.confirmed == false){
+                    res.status(401).send({"error": "user not yet confirmed"})
+                }
+                else{
+                const toSend = {
+                    name: user.name,
+                    email: user.email,
+                    admin: user.admin,
+                    completedQuizzes: user.completedQuizzes
+                }
+                const token = jwt.sign({id: user._id, admin: user.admin}, req.app.get('secretKey'), { expiresIn: '1h' });
+                res.json({status:"success", message: "user found!!!", data:{user: toSend, token:token}});
                 }
             }
-        });
+            else{
+            res.json({status:"error", message: "Invalid email/password!!!", data:null});
+            }
+       }
+       catch(err){
+           next(err)
+       }
+
     },
-    confirm: function(req, res, next){
+    confirm(req, res, next){
         jwt.verify(req.params.token, req.app.get('secretKey'), function (err, decoded) {
             if (err) {
                 res.status(400).json({ status: "error", message: err.message, data: null });

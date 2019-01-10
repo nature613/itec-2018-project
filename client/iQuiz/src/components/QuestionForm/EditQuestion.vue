@@ -42,12 +42,12 @@
 <script>
 import QuestionService from '@/services/QuestionService'
 
-import questionTypeSelector from './modules/questions/questionTypeSelector'
-import textRule from './modules/questions/textRule'
-import radioRule from './modules/questions/radioRule'
-import checkboxRule from './modules/questions/checkboxRule'
-import addButton from './modules/addButton'
-import errorMessage from './modules/errorMessage'
+import questionTypeSelector from './questionTypeSelector'
+import textRule from './textRule'
+import radioRule from './radioRule'
+import checkboxRule from './checkboxRule'
+import addButton from '../modules/addButton'
+import errorMessage from '../modules/errorMessage'
 
 export default {
   name: 'EditQuestion',
@@ -175,7 +175,7 @@ export default {
         border-radius: 10px;
         color: rgba(255,255,255,.9);
         background-color: #ba92cb;
-        background-image: url('../assets/ic_keyboard_arrow_down_white_24px.svg');
+        background-image: url('../../assets/ic_keyboard_arrow_down_white_24px.svg');
         background-position: 95% center; 
         background-repeat: no-repeat;
         margin-bottom: 10%;

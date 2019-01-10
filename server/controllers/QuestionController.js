@@ -1,58 +1,70 @@
 const QuestionModel = require('../models/Question');
 
 module.exports = {
-    create: function(req, res, next){
+    async create(req, res, next){
         var data = req.body;
-
-        QuestionModel.create(data).then( (question) =>{
+        try{
+            question = await QuestionModel.create(data)
             res.send(question);
-        }).catch(next)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    getAllQuestions: function(req, res, next){
-        // console.log('poc')
-        QuestionModel.find(req.query).then(
-            (questions) => {
-                res.send(questions)
-            }            
-        )
+    async getAllQuestions(req, res, next){
+        console.log('poc')
+        try{
+            questions = await QuestionModel.find(req.query)
+            res.send(questions)          
+        }
+        catch(err){
+            next(err)
+        }
     },
-    updateQuestion: function(req, res, next){
-        QuestionModel.findByIdAndUpdate({_id: req.params.id}, req.body, {new:true}).then(
-            (question) => {
-                res.send(question)
-            }
-        )
+    async updateQuestion(req, res, next){
+        try{
+            const question = await QuestionModel.findByIdAndUpdate({_id: req.params.id}, req.body, {new:true})
+            res.send(question)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    deleteQuestion: function(req, res, next){
-        QuestionModel.findByIdAndDelete({_id: req.params.id}).then(
-            (question) => {
-                res.send(question)
-            }
-        )
+    async deleteQuestion(req, res, next){
+        try{
+            const question = await QuestionModel.findByIdAndDelete({_id: req.params.id});
+            res.send(question);
+        }
+        catch(err){
+            next(err)
+        }
     },
-    getQuestion: function(req, res, next){
-        QuestionModel.findById({_id: req.params.id}).then(
-            (question) => {
-                res.send(question)
-            }
-        )
+    async getQuestion(req, res, next){
+        try{
+            const question = await QuestionModel.findById({_id: req.params.id})
+            res.send(question)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    getResource: function(req, res, next){
+    async getResource(req, res, next){
         var resource = req.params.resource;
-        console.log(resource)
-        QuestionModel.find({}, resource).then(
-            (questions) => {
-                var good =[];
-                for (question in questions){
-                    console.log(questions[question])
-                    good.push(questions[question][resource])
-                }
-                var response = good.filter(function(item, pos) {
-                    return good.indexOf(item) == pos;
-                })
-                
-                res.send(response)
-            }            
-        )
+        // console.log(resource)
+        try{
+            const questions = await QuestionModel.find({}, resource)
+            var good =[];
+            for (question in questions){
+                console.log(questions[question])
+                good.push(questions[question][resource])
+            }
+            var response = good.filter(function(item, pos) {
+                return good.indexOf(item) == pos;
+            })
+            res.send(response)
+        }
+        catch(err){
+            next(err)
+        }     
     }
 }

@@ -19,8 +19,8 @@
 <script>
 import QuestionService from '@/services/QuestionService'
 
-import question from './modules/questions/question'
-import questionFilter from './modules/questions/questionFilter'
+import question from './question'
+import questionFilter from './questionFilter'
 
 export default {
   name: 'ShowAllQuestions',
@@ -99,7 +99,7 @@ export default {
                 color: #ba92cb
                 width: 70%
                 background-color: #FFF  
-                background-image: url('../assets/ic_search_white_24px.svg')
+                background-image: url('../../assets/ic_search_white_24px.svg')
                 background-position: 10px 10px
                 background-repeat: no-repeat
             

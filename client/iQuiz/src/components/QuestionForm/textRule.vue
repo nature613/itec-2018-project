@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import errorMessage from '../errorMessage'
+import errorMessage from '../modules/errorMessage'
 
 export default {
   name: 'textRule',

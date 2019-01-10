@@ -1,40 +1,50 @@
 const EventModel = require('../models/Event');
 
 module.exports = {
-    create: function(req, res, next){
+    async create(req, res, next){
         var data = req.body;
-
-        EventModel.create(data).then( (event) =>{
+        try{
+            const event = await EventModel.create(data);
             res.send(event);
-        }).catch(next)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    getAll: function(req, res, next){
-        EventModel.find(req.query).then(
-            (events)=>{
-                res.send(events)
-            }
-        )
+    async getAll(req, res, next){
+        try{
+            const events = await EventModel.find(req.query);
+            res.send(events)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    getEvent: function(req,res, next){
-        EventModel.findById({_id: req.params.id}).then(
-            (event) =>{
-                res.send(event)
-            }
-        )
+    async getEvent(req,res, next){
+        try{
+            const event = await EventModel.findById({_id: req.params.id});
+            res.send(event)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    updateEvent: function(req, res, next){
-        EventModel.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description}, {new:true})
-        .then(
-            (event)=>{
-                res.send(event)
-            }
-        ).catch(next)
+    async updateEvent(req, res, next){
+        try{
+            const event = await EventModel.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description, dueDate: req.body.dueDate}, {new:true});
+            res.send(event)
+        }
+        catch(err){
+            next(err)
+        }
     },
-    deleteEvent: function(req,res,next){
-        EventModel.findByIdAndDelete({_id: req.params.id}).then(
-            (event) => {
-                res.send(event)
-            }
-        )
+    async deleteEvent(req,res,next){
+        try{
+            const event = await EventModel.findByIdAndDelete({_id: req.params.id});
+            res.send(event)
+        }
+        catch(err){
+            next(err)
+        }
     }
 }

@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
 export default {
     data () {
         return {
@@ -53,19 +52,18 @@ export default {
             this.$emit('filters-updated', this.filterObject);
         }
     },
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
     .selected
-        background-image: url('../../../assets/baseline-radio_button_checked-24px.svg')
+        background-image: url('../../assets/baseline-radio_button_checked-24px.svg')
         background-position: 30% center
         background-repeat: no-repeat
         font-weight: bold
     .notSelected
-        background-image: url('../../../assets/baseline-radio_button_unchecked-24px.svg')
+        background-image: url('../../assets/baseline-radio_button_unchecked-24px.svg')
         background-position: 30% center
         background-repeat: no-repeat
     p

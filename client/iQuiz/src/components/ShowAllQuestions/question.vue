@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="more">
-            <router-link v-bind:to="'/questions/edit/'+question._id"><img src="../../../assets/baseline-edit-24px.svg"></router-link>
-            <img src="../../../assets/baseline-delete-24px.svg" class="trash" @click="deleteQuestion">
+            <router-link v-bind:to="'/questions/edit/'+question._id"><img src="../../assets/baseline-edit-24px.svg"></router-link>
+            <img src="../../assets/baseline-delete-24px.svg" class="trash" @click="deleteQuestion">
         </div>
         <div class="content">
             <h4>Title: {{question.title}}</h4>
@@ -34,7 +34,6 @@
 
 <script>
 import QuestionService from '@/services/QuestionService'
-
 export default {
     data(){
         return{
@@ -62,7 +61,6 @@ export default {
             }
         }
     },
-
 }
 </script>
 
@@ -76,14 +74,11 @@ export default {
     flex-direction: column
     padding: 2% 5%
     margin-bottom: 1rem
-
-
     @media (max-width: 900px)
         width: 90%
  
     .content
         flex-grow: 1
-
     .buton
         font-weight: 700
         background-color: #fff
@@ -98,7 +93,6 @@ export default {
         font-size: 2vw;
         margin: 8px 2px;
         max-width: 25%
-
         @media (max-width: 900px)
             font-size: 5vw
     .buton:hover
