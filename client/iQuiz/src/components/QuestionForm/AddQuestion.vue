@@ -1,5 +1,5 @@
 <template>
-<!-- to add picture and date support -->
+<!-- to add picture-->
     <div class="hello">
         <div class="buttons-plate">
             <h2>Add Question</h2>
@@ -10,25 +10,25 @@
             <error-message :error-list="errors" validator="qtype"></error-message>
             <select required v-model="body.scored" v-validate="'required'" name="qtype">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Question type </option>
-                <option>Scored</option>
-                <option>Non-scored</option>
+                <option value="1">Scored</option>
+                <option value="0">Non-scored</option>
             </select>
 
             <error-message :error-list="errors" validator="difficulty"></error-message>
-            <select v-model="body.difficulty" v-validate="'required'" name="difficulty" v-if="body.scored=='Scored'">
+            <select v-model="body.difficulty" v-validate="'required'" name="difficulty" v-if="body.scored==1">
                 <option disabled selected value style="color:rgba(255,255,255,.6);"> Difficulty </option>
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
+                <option value="0">Easy</option>
+                <option value="1">Medium</option>
+                <option value="2">Hard</option>
             </select>
 
             <error-message :error-list="errors" validator="category"></error-message>
             <input type="text" v-model="body.category" placeholder="Category" v-validate="'required'" name="category"/>
             
-            <type-selector @update-type="updateType" :question-type="body.questionType"></type-selector>
-
+            <type-selector @update-type="updateType" :question-type="body.questionType" />
+<!-- TODO: show add responses thing when non-scored-->
             <transition name="slide" mode="out-in">
-                <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers"></component>
+                <component :is="selectRule" :correct-answers="body.correctAnswers" :answers="body.answers" v-if="body.scored==1" />
             </transition>
 
 <!--  add a new component with some prop that tells if success or not, then display it and stuff when button is clicked. then go to see all questions page -->
@@ -70,11 +70,8 @@ export default {
             this.validateFields();
             if(!this.errors.any()){
                 var payload = this.body;
-                if(this.body.scored == 'Scored') payload.scored = true;
-                else payload.scored = false;
-                if(this.body.difficulty == 'Easy') payload.difficulty = 0;
-                else if(this.body.difficulty == 'Medium') payload.difficulty = 1;
-                else if(this.body.difficulty == 'Hard') payload.difficulty=2;
+                payload.scored = Boolean(Number(payload.scored))
+                if (payload.difficulty) payload.difficulty = Number(payload.difficulty)
                 // console.log(payload)
                 try{
                     const response = await QuestionService.postQuestion(payload)
@@ -94,13 +91,12 @@ export default {
         },
         validateFields: function(){
             if(!this.body.title) this.errors.add({field:'title', msg:'The title field is required'});
-            if(!this.body.difficulty) this.errors.add({field:'difficulty', msg:'The difficulty field is required'});
+            if((!this.body.difficulty==='') && (this.body.scored == true)) this.errors.add({field:'difficulty', msg:'The difficulty field is required'});
             if(!this.body.scored) this.errors.add({field:'qtype', msg:'The question type field is required'});
             if(!this.body.category) this.errors.add({field:'category', msg:'The category field is required'});
-        }
+        },
     },
     mounted () {
-        console.log(this.$store.state.token)
     },
     computed: {
         selectRule: function(){

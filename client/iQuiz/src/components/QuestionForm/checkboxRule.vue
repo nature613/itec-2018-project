@@ -41,7 +41,6 @@ export default {
         }
     },
     mounted () {
-        console.log(this.$store.state.token)
     },
     props: ['correct-answers', 'answers']
 }

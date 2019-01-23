@@ -40,6 +40,8 @@
 
  
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ShowEvent',
   data () {
@@ -52,7 +54,7 @@ export default {
   },
   mounted () {
     console.log(this.$store.state.token)
-    this.$http.get('http://localhost:4000/api/event/'+this.$route.params.id).then((response)=>{
+    axios.get('http://localhost:4000/api/event/'+this.$route.params.id).then((response)=>{
         this.event = response.data;
     })
   }

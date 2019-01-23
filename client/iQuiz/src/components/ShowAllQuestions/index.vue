@@ -40,7 +40,6 @@ export default {
 
     },
     async mounted () {
-        console.log(this.$store.state.token);
         const data = await QuestionService.getAllQuestions({})
         this.questions = data.data;
         // console.log(data);

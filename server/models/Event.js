@@ -13,7 +13,15 @@ const EventSchema = new Schema({
         default: "A small description of an awesome event :D",
         trim: true
     },
-    dueDate: {
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    startDate: {
+        type: Date,
+        default: Date.now
+    },
+    endDate:{
         type: Date
     }
 });

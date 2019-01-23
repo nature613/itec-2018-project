@@ -31,7 +31,7 @@ module.exports = {
     },
     async updateEvent(req, res, next){
         try{
-            const event = await EventModel.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description, dueDate: req.body.dueDate}, {new:true});
+            const event = await EventModel.findByIdAndUpdate({_id: req.params.id}, {title: req.body.title, description: req.body.description, startDate: req.body.startDate, endDate: req.body.endDate}, {new:true});
             res.send(event)
         }
         catch(err){
