@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import AddEvent from '@/components/AddEvent'
-import ShowAllEvents from '@/components/ShowAllEvents'
+import ShowAllEvents from '@/components/ShowAllEvents/index'
 import ShowEvent from '@/components/ShowEvent'
 
 import AddQuestion from '@/components/QuestionForm/AddQuestion'
@@ -19,6 +19,8 @@ import Register from '@/components/Register'
 
 import Dashboard from '@/components/Dashboard'
 import AccessDenied from '@/components/AccessDenied'
+
+import Feedback from '@/components/New/Feedback';
 
 Vue.use(Router)
 
@@ -92,12 +94,21 @@ let router =  new Router({
       path: '/addevent',
       name: 'AddEvent',
       component: AddEvent,
+      meta: { 
+        requiresAuth: true,
+        is_admin : true
+      }      
     },
     {
       path: '/events',
       name: 'ShowAllEvents',
-      component: ShowAllEvents
+      component: ShowAllEvents,
+      meta: { 
+        requiresAuth: true,
+        is_admin : true
+      }  
     },
+    
     {
       path: '/event/:id',
       name: 'ShowEvent',
@@ -113,6 +124,11 @@ let router =  new Router({
       path: '/qrcode',
       name: 'Qrcode',
       component: Qrcode
+    },
+    {
+      path: '/quiz/:id',
+      name: 'Feedback',
+      component: Feedback
     },
 
     {

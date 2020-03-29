@@ -23,7 +23,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 body, html{
@@ -38,14 +37,6 @@ body, html{
     justify-content: center;
     min-height: 100vh;
 }
-h3{
-    color: #fff;
-		font-size: 2rem;
-}
-h4{
-  color: #ecf0f1;
-}
-
 
 
 .vb > .vb-dragger {
@@ -92,5 +83,19 @@ h4{
 
 .vb.vb-dragging-phantom > .vb-dragger > .vb-dragger-styler {
     background-color: rgba(186, 146, 203, .5);
+}
+
+.base-plate{
+  width: 80vw;
+  background-color: #5F0683;
+  margin: 0 auto;
+  margin-top: 15vh;
+  border-radius: 10px;
+}
+
+@media(min-width: 900px){
+  .base-plate{
+    width: 70vw
+  }
 }
 </style>

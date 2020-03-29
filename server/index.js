@@ -11,7 +11,7 @@ app.use(cors())
 app.set('secretKey', 'CHEIESECRETA');
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/iQuiz', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/iQuiz', {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());

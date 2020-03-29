@@ -110,10 +110,10 @@ export default {
       color: rgba(255,255,255,.6)
 
     &[type="email"]
-      background-image: url('../assets/ic_email_white_24px.svg')
+      background-image: url('../assets/email.svg')
 
     &[type='password']
-      background-image: url('../assets/ic_lock_white_24px.svg')
+      background-image: url('../assets/password.svg')
 
   .switchlink
     color: #fff

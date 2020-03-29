@@ -40,10 +40,14 @@ export default {
 
     },
     async mounted () {
-        const data = await QuestionService.getAllQuestions({})
-        this.questions = data.data;
-        // console.log(data);
-
+        try{
+            const data = await QuestionService.getAllQuestions({})
+            this.questions = data.data;
+            // console.log(data);
+        }
+        catch(err){
+            console.log(err)
+        }
     },
     computed: {
         filteredQuestions: function(){

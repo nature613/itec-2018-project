@@ -12,7 +12,7 @@ module.exports = {
         }
     },
     async getAllQuestions(req, res, next){
-        console.log('poc')
+        // console.log('poc')
         try{
             questions = await QuestionModel.find(req.query)
             res.send(questions)          

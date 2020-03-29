@@ -5,13 +5,10 @@ const mail = require('../helpers/mailconfig')
 const randomstring = require('randomstring')
 
 module.exports = {
-    create: function(req, res, next){
+    async createfunction(req, res, next){
         var data = req.body;
-        QuizModel.create(data).then(
-            (quiz) => {
-                res.send(quiz)
-            }
-        ).catch(next)
+        const quiz = await QuizModel.create(data)
+        res.send(quiz)
     },
     getAll: function(req, res, next){
         QuizModel.find(req.query).then((quizzes)=>{

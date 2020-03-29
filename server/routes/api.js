@@ -16,7 +16,7 @@ router.delete('/event/:id' , eventController.deleteEvent);
 
 
 //Quiz related
-router.post('/quizzes' , quizController.create);
+router.post('/quizzes' , quizController.createfunction);
 router.get('/quizzes' , quizController.getAll);
 router.get('/quiz/:id' , quizController.getOne);
 router.delete('/quiz/:id' , quizController.deleteRules);
