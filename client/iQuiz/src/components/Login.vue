@@ -1,8 +1,7 @@
 <template>
-  <div class="hello">
-    <div class="buttons-plate">
+  <div class="base-plate buttons-plate">
       <form>
-        <h2>Log in</h2>
+        <h2>Login</h2>
 
         <error-message :error-list="errors" validator="email"></error-message>
         <input type="email" v-model="body.email" placeholder="Email" v-validate="'required|email'" name='email'/>
@@ -14,7 +13,6 @@
 
       <span @click="login">LOGIN</span>
       <router-link to='register' class="switchlink" tag='h5'>Don't have an account? Register here</router-link>
-    </div>
   </div>
 </template>
 
@@ -58,17 +56,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
-  .hello
-    height: 100vh
-
   .buttons-plate
-    width: 319px
-    height: 501px
-    background-color: rgba(186, 146, 203, 0.6)
-    border-radius: 28px
     display: flex
     align-items: center
     flex-direction: column
+    height: 80vh
+    margin-top: 15vh
 
     form
     display: flex
@@ -84,14 +77,14 @@ export default {
   span
     font-size: 27px
     font-weight: 900
-    background-color: #8E44AD
+    background-color: #fff
     width: 55%
     margin: 10% auto
     text-align: center
     padding: 3% 15%
     border-radius: 10px
     cursor: pointer
-    color: #fff
+    color: #5F0683
     
     &:hover
       box-shadow: 0 0 20px #000
@@ -101,13 +94,13 @@ export default {
     padding: 15px 15px 15px 55px
     border: 0
     border-radius: 10px
-    color: #fff
-    background-color: rgba(141, 68, 173, 0.644)
+    color: #af83c1
+    background-color: #fff
     background-position: 10px 10px
     background-repeat: no-repeat
 
     &::placeholder
-      color: rgba(255,255,255,.6)
+      color: #af83c1
 
     &[type="email"]
       background-image: url('../assets/email.svg')
@@ -126,15 +119,18 @@ export default {
 
   @media (min-width: 900px)
     .buttons-plate
-      width: 45%
-      height: 90%
-    
+      width: 60vw
+      height: 85vh
+      margin-top: 12vh
+
     input
-      width: 25vw
+      width: 30vw
+      margin-bottom: 10vh
     
     h2
       margin-top: 5%
     
     span
-      margin: 5% auto
+      margin: 1vh auto
+      width: 20vw
 </style>

@@ -1,6 +1,5 @@
 <template>
-  <div class="hello">
-    <div class="buttons-plate">
+    <div class="base-plate buttons-plate">
       <form>
         <h2>Register</h2>
 
@@ -18,7 +17,6 @@
       <span @click='register'>REGISTER</span>
       <router-link to='login' class="switchlink" tag='h5'>Already have an account? Login</router-link>
     </div>
-  </div>
 </template>
 
 <script>
@@ -60,16 +58,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
-
-
   .buttons-plate
-    width: 319px;
-    height: 644px;
-    background-color: rgba(186, 146, 203, 0.6);
-    border-radius: 28px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: flex
+    align-items: center
+    flex-direction: column
+    height: 80vh
+    margin-top: 15vh
 
     form
     display: flex;
@@ -83,32 +77,32 @@ export default {
     color: #fff
 
   span
-    font-size: 27px;
-    font-weight: 900;
-    background-color: #8E44AD;
-    width: 55%;
-    margin: 10% auto;
-    text-align: center;
-    padding: 3% 15%;
-    border-radius: 10px;
-    cursor: pointer;
-    color: #fff;
+    font-size: 27px
+    font-weight: 900
+    background-color: #fff
+    width: 55%
+    margin: 10% auto
+    text-align: center
+    padding: 3% 15%
+    border-radius: 10px
+    cursor: pointer
+    color: #5F0683
     
     &:hover
       box-shadow: 0 0 20px #000;
 
   input
-    margin-bottom: 10%;
-    padding: 15px 15px 15px 55px;
-    border: 0;
-    border-radius: 10px;
-    color: #fff;
-    background-color: rgba(141, 68, 173, 0.644);
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
+    margin-bottom: 10%
+    padding: 15px 15px 15px 55px
+    border: 0
+    border-radius: 10px
+    color: #af83c1
+    background-color: #fff
+    background-position: 10px 10px
+    background-repeat: no-repeat
 
     &::placeholder
-      color: rgba(255,255,255,.6);
+      color: #af83c1
 
     &[type='text']
       background-image: url('../assets/person.svg');
@@ -130,15 +124,19 @@ export default {
 
   @media (min-width: 900px)
     .buttons-plate
-      width: 45%;
-      margin: 20px 0
-    
+      width: 60vw
+      height: 110vh
+      margin-top: 12vh
+      margin-bottom: 3vh
+
     input
-      width: 25vw;
+      width: 30vw
+      margin-bottom: 10vh
     
     h2
-      margin-top: 5%;
+      margin-top: 5%
     
     span
-      margin: 5% auto;
+      margin: 1vh auto
+      width: 20vw
 </style>
