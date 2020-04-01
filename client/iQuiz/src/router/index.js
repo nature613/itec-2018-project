@@ -20,7 +20,8 @@ import Register from '@/components/Register'
 import Dashboard from '@/components/Dashboard'
 import AccessDenied from '@/components/AccessDenied'
 
-import Feedback from '@/components/New/Feedback';
+import Feedback from '@/components/New/Feedback'
+import Quiz from '@/components/New/Quiz'
 
 Vue.use(Router)
 
@@ -126,9 +127,17 @@ let router =  new Router({
       component: Qrcode
     },
     {
-      path: '/quiz/:id',
+      path: '/validate/:id',
       name: 'Feedback',
       component: Feedback
+    },
+    {
+      path: '/quiz/:id',
+      name: 'Quiz',
+      component: Quiz,      
+      meta: { 
+        requiresAuth: true
+      }
     },
 
     {

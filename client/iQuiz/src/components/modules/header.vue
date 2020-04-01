@@ -2,7 +2,7 @@
 <template>
 	<div>
 	  <div class="header">
-      <h3>iQuiz</h3>
+      <img src="../../assets/iquiz-logo.svg" id="logo"/>
 	  </div>
 	  <img src="../../assets/ic_menu_white_24px.svg" id="lol" @click="menuToggled = !menuToggled" >
 	  <div class="push"></div>
@@ -137,4 +137,7 @@ export default {
     text-decoration: none;
     color: #8E44AD;
     font-weight: bold;
+
+  #logo
+    height: 70%
 </style>
