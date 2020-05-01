@@ -5,12 +5,13 @@
 <script>
 import QuizDescription from './QuizDescription'
 import QuizCompletion from './QuizCompletion'
+import Questionnaire from './Questionnaire'
 import QuizCompletionFeedback from './QuizCompletionFeedback'
 
 export default {
     data () {
         return {
-            selectedIndex: 3
+            selectedIndex: 1
         }
     },
     mounted () {
@@ -19,14 +20,15 @@ export default {
     components:{
         quizDescription: QuizDescription,
         quizCompletion: QuizCompletion,
-        quizCompletionFeedback: QuizCompletionFeedback
+        quizCompletionFeedback: QuizCompletionFeedback,
+        questionnaire: Questionnaire
     },
     computed: {
         selectedPage(){
             if(this.selectedIndex === 0) return 'quizDescription'
-            else if (this.selectedIndex === 1) return null //TODO: Add quiz page here
-            else if(this.selectedIndex === 2) return 'quizCompletion'
-            else if(this.selectedIndex === 3) return 'quizCompletionFeedback'
+            else if (this.selectedIndex === 1) return 'questionnaire'
+            else if (this.selectedIndex === 2) return 'quizCompletion'
+            else if (this.selectedIndex === 3) return 'quizCompletionFeedback'
             else return null //TODO: Either add more pages or throw error
         }
     },
