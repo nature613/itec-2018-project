@@ -1,10 +1,10 @@
 <template>
   <div class="base-plate error-plate">
-    <img src="../assets/defend.svg" class="checkbox"/>
-    <h1 class="heading">Sorry, you are
-not allowed to
-view this content</h1>
-    <h4 class="subheading">It appears you do not have enough permissions to view use this resource. If you think this is a mistake, please contact the system admin!</h4>
+    <img src="../../assets/404.svg" class="checkbox"/>
+    <h1 class="heading">Sorry, we did not
+find what you 
+were looking for :(</h1>
+    <h4 class="subheading">It appears we cannot find the resource you have requested. Are you sure you have entered the right info?</h4>
   </div>
 </template>
 

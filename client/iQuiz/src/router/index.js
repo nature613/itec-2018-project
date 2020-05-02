@@ -19,6 +19,9 @@ import Register from '@/components/Register'
 
 import Dashboard from '@/components/Dashboard'
 import AccessDenied from '@/components/AccessDenied'
+import Error404 from '@/components/New/Error404'
+import RequestTimedOut from '@/components/New/RequestTimedOut'
+import Error from '@/components/New/Error'
 
 import Feedback from '@/components/New/Feedback'
 import Quiz from '@/components/New/Quiz'
@@ -29,6 +32,26 @@ let router =  new Router({
   routes: [
     {
       path: '*',
+      redirect: '404'
+    },
+    {
+      path:'/404',
+      name:'Error404',
+      component: Error404
+    },
+    {
+      path: '/timedout',
+      name: 'RequestTimedOut',
+      component: RequestTimedOut
+    },
+    {
+      path: '/error',
+      name: 'Error',
+      component: Error
+    },
+
+    {
+      path: '/',
       redirect: 'login',
     },
     {
