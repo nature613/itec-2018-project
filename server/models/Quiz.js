@@ -20,13 +20,11 @@ const LeaderboardUserSchema = new Schema({
 const QuizSchema = new Schema({
     title: {
         type: String,
-        unique: true
+        unique: true,
+        required: [true, 'Title is required']
     },
     //0 - scored, 1 - nonscored
     quizType:{
-        type: Number
-    },
-    numberOfQuestions:{
         type: Number
     },
     maximumTime: {

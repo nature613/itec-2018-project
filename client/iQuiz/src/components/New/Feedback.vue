@@ -7,12 +7,14 @@
 <script>
 import positiveFeedback from './PositiveFeedback'
 import negativeFeedback from './NegativeFeedback'
+import QuizService from '../../services/QuizService'
 
 export default {
   name: 'Feedback',
   data () {
     return {
       positive: true,
+      quiz: null
     }
   },
   components:{
@@ -24,8 +26,14 @@ export default {
       return this.positive?"positiveFeedback":"negativeFeedback"
     }
   },
-  mounted () {
-    //store in vuex the id of the quiz (if positive)
+  async mounted () {
+    try{
+      this.quiz = (await QuizService.useQR({quizID:this.$route.params.quizID, QRId:this.$route.params.id})).data;
+      //store in vuex the rules of the quiz (if positive)
+    }
+    catch(err){
+      console.log(err)
+    }
   }
 }
 </script>

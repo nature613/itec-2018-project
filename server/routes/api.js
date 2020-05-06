@@ -16,13 +16,12 @@ router.delete('/event/:id' , eventController.deleteEvent);
 
 
 //Quiz related
-router.post('/quizzes' , quizController.createfunction);
-router.get('/quizzes' , quizController.getAll);
-router.get('/quiz/:id' , quizController.getOne);
-router.delete('/quiz/:id' , quizController.deleteRules);
-router.put('/quiz/:id' , quizController.updateRules);
+router.post('/event/:eventId/quizzes' , quizController.createfunction);
+router.get('/event/:eventId/quizzes' , quizController.getAll);
+router.get('/quiz/:quizId' , quizController.getOne);
+//TODO: Add editing&deleting quiz functionality
+router.put('/quiz/:quizId/rules' , quizController.updateRules);
 router.post('/validatequiz' , quizController.validateQuiz);
-//get burned qr codes in frontend, call get quiz, see array there
 router.post('/generateQR', quizController.generateQR);
 router.put('/useQR', quizController.useQR)
 

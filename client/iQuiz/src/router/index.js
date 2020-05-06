@@ -150,7 +150,7 @@ let router =  new Router({
       component: Qrcode
     },
     {
-      path: '/validate/:id',
+      path: '/validate/:quizID/:id',
       name: 'Feedback',
       component: Feedback
     },
