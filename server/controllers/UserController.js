@@ -29,6 +29,7 @@ module.exports = {
             next(err)
         }
     },
+
    async authenticate(req, res, next) {
        try{
             const user = await UserModel.findOne({email:req.body.email});
@@ -56,6 +57,7 @@ module.exports = {
        }
 
     },
+
     confirm(req, res, next){
         jwt.verify(req.params.token, req.app.get('secretKey'), function (err, decoded) {
             if (err) {
@@ -68,5 +70,15 @@ module.exports = {
             }
         });
         return res.redirect('http://localhost:8080/login');
+    },
+
+    async getAllUsers(req, res, next){
+        try{
+            users = await UserModel.find(req.query, 'name email admin')
+            res.send(users)          
+        }
+        catch(err){
+            next(err)
+        }
     }
    }

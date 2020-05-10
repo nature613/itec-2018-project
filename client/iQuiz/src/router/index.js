@@ -18,6 +18,8 @@ import Login from '@/components/Login'
 import Register from '@/components/Register'
 
 import Dashboard from '@/components/Dashboard'
+import ShowAllUsers from '@/components/New/UserAdmin'
+
 import AccessDenied from '@/components/AccessDenied'
 import Error404 from '@/components/New/Error404'
 import RequestTimedOut from '@/components/New/RequestTimedOut'
@@ -81,8 +83,17 @@ let router =  new Router({
       name: 'Dashboard',
       component: Dashboard,
       meta: { 
-        // requiresAuth: true,
-        // is_admin : true
+        requiresAuth: true,
+        is_admin : true
+      }
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: ShowAllUsers,
+      meta: { 
+        requiresAuth: true,
+        is_admin : true
       }
     },
 

@@ -7,13 +7,16 @@ import {store} from './store/index'
 import VueMaterialIcon from 'vue-material-icon'
 import VeeValidate from 'vee-validate';
 import Vuebar from 'vuebar';
+import VueGoodTablePlugin from 'vue-good-table';
+import 'vue-good-table/dist/vue-good-table.css'
 
 
 Vue.config.productionTip = false
 
 Vue.use(Vuebar);
-Vue.use(VeeValidate)
-Vue.component(VueMaterialIcon.name, VueMaterialIcon)
+Vue.use(VeeValidate);
+Vue.use(VueGoodTablePlugin);
+Vue.component(VueMaterialIcon.name, VueMaterialIcon);
 
 /* eslint-disable no-new */
 new Vue({
