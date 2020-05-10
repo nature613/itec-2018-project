@@ -38,7 +38,8 @@ router.delete('/question/:id' , validators.validateAdmin , questionController.de
 router.post('/register', userController.create);
 router.post('/authenticate', userController.authenticate);
 router.get('/confirm/:token', userController.confirm);
-router.get('/users', validators.validateAdmin, userController.getAllUsers)
+router.get('/users', validators.validateAdmin, userController.getAllUsers);
+router.post('/users', validators.validateAdmin, userController.createAdmin)
 
 
 router.post('/test', (req, res)=>{

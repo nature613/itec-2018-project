@@ -80,5 +80,15 @@ module.exports = {
         catch(err){
             next(err)
         }
+    },
+
+    async createAdmin(req, res, next){
+        try{
+            const user = await UserModel.create({ name: req.body.name, email: req.body.email, password: req.body.password, admin: true })
+            res.send(user)
+        }
+        catch(err){
+            next(err)
+        }
     }
    }

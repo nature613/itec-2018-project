@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import UserService from '@/services/UserService'
 
 export default {
   data () {
@@ -29,7 +30,13 @@ export default {
   },
   methods: {
     async addAdmin(){
-      this.$emit('admin-mode');
+      try{
+        const user = await UserService.createAdmin(this.registerData);
+        this.$emit('admin-mode');
+      }
+      catch(err){
+        console.log(err)
+      }
     }
   },
 }
