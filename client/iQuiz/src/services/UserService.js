@@ -6,5 +6,8 @@ export default {
     },
     createAdmin(content){
         return Api().post('users', content)
+    },
+    deleteUser(email){
+        return Api().delete(`user/${email}`);
     }
 }

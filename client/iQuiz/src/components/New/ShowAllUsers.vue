@@ -24,6 +24,14 @@
         allLabel: 'All',
       }"
       >
+      <template slot="table-row" slot-scope="props">
+        <span v-if="(props.column.field == 'actions')">
+          <img src="../../assets/delete-24px.svg" style="cursor: pointer" @click="deleteUser(props.row.email)"/>
+        </span>
+        <span v-else>
+          {{props.formattedRow[props.column.field]}}
+        </span>
+      </template>
       </vue-good-table>
   </div>
 </template>
@@ -47,7 +55,12 @@ export default {
         {
           label: 'Admin',
           field: 'admin',
-          type: 'boolean'
+        },
+        {
+          label: 'Actions',
+          field: 'actions',
+          sortable: false,
+          width: '80px',
         }
       ],
       rows: [],
@@ -56,6 +69,17 @@ export default {
   methods: {
     selectionChanged(){
       console.log("lol")
+    },
+    async deleteUser(email){
+      if (confirm(`Delete this user?`)) {
+        try{
+          const response = await UserService.deleteUser(email)
+          this.$router.go();
+        }
+        catch(error){
+          console.log(error)
+        }
+      }
     }
   },
   async mounted() {

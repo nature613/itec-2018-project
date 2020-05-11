@@ -39,7 +39,8 @@ router.post('/register', userController.create);
 router.post('/authenticate', userController.authenticate);
 router.get('/confirm/:token', userController.confirm);
 router.get('/users', validators.validateAdmin, userController.getAllUsers);
-router.post('/users', validators.validateAdmin, userController.createAdmin)
+router.post('/users', validators.validateAdmin, userController.createAdmin);
+router.delete('/user/:email', validators.validateAdmin, userController.deleteUser);
 
 
 router.post('/test', (req, res)=>{

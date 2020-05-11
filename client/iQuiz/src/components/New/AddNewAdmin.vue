@@ -9,6 +9,7 @@
     <input type="email" v-model="registerData.email" placeholder="Email address" name='email'/>
 
     <span class="buton" @click="addAdmin">Add admin</span>
+    <span class="buton" @click="$emit('admin-mode');">Cancel</span>
   </div>
 </template>
 
