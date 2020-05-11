@@ -1,6 +1,6 @@
 <template>
   <div class="base-plate feedback-plate">
-    <img src="../../assets/high_five.svg" class="hand"/>
+    <img src="../../../assets/high_five.svg" class="hand"/>
     <h1 class="heading">High five!</h1>
     <h4 class="subheading">Thank you for completing this form! Your feedback will be very valuable to us!</h4>
     <router-link to='/profile' class="profile-button" tag='span'>Go to your profile</router-link>

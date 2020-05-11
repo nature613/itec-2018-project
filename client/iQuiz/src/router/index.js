@@ -1,32 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import AddEvent from '@/components/AddEvent'
-import ShowAllEvents from '@/components/ShowAllEvents/index'
-import ShowEvent from '@/components/ShowEvent'
+// import AddEvent from '@/components/AddEvent'
+// import ShowAllEvents from '@/components/ShowAllEvents/index'
+// import ShowEvent from '@/components/ShowEvent'
 
-import AddQuestion from '@/components/QuestionForm/AddQuestion'
-import ShowAllQuestions from '@/components/ShowAllQuestions/index'
-import EditQuestion from '@/components/QuestionForm/EditQuestion'
+import ShowAllQuestions from '@/components/Admin/QuestionManagement/QuestionAdmin'
+// import EditQuestion from '@/components/QuestionForm/EditQuestion'
 
-import AddQuiz from '@/components/AddQuiz'
-import Qrcode from '@/components/modules/qrcode'
+// import AddQuiz from '@/components/AddQuiz'
+// import Qrcode from '@/components/modules/qrcode'
 
 import About from '@/components/About'
 import Profile from '@/components/Profile'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 
-import Dashboard from '@/components/Dashboard'
-import ShowAllUsers from '@/components/New/UserAdmin'
+import Dashboard from '@/components/Admin/Dashboard'
+import ShowAllUsers from '@/components/Admin/UserManagement/UserAdmin'
 
-import AccessDenied from '@/components/AccessDenied'
-import Error404 from '@/components/New/Error404'
-import RequestTimedOut from '@/components/New/RequestTimedOut'
-import Error from '@/components/New/Error'
+import AccessDenied from '@/components/Errors/AccessDenied'
+import Error404 from '@/components/Errors/Error404'
+import RequestTimedOut from '@/components/Errors/RequestTimedOut'
+import Error from '@/components/Errors/Error'
 
-import Feedback from '@/components/New/Feedback'
-import Quiz from '@/components/New/Quiz'
+import Feedback from '@/components/User/Feedback/Feedback'
+import Quiz from '@/components/User/Quiz/Quiz'
 
 Vue.use(Router)
 
@@ -96,70 +95,61 @@ let router =  new Router({
         is_admin : true
       }
     },
-
-    {
-      path: '/addquestion',
-      name: 'AddQuestion',
-      component: AddQuestion,
-      meta: { 
-        requiresAuth: true,
-        is_admin : true
-      }
-    },
     {
       path: '/questions',
-      name: 'ShowAllQuestions',
+      name: 'Questions',
       component: ShowAllQuestions,
       meta: { 
         requiresAuth: true,
         is_admin : true
       }
     },
-    {
-      path: '/questions/edit/:id',
-      name: 'EditQuestion',
-      component: EditQuestion,
-      meta: { 
-        requiresAuth: true,
-        is_admin : true
-      }
-    },
-    
-    {
-      path: '/addevent',
-      name: 'AddEvent',
-      component: AddEvent,
-      meta: { 
-        requiresAuth: true,
-        is_admin : true
-      }      
-    },
-    {
-      path: '/events',
-      name: 'ShowAllEvents',
-      component: ShowAllEvents,
-      meta: { 
-        requiresAuth: true,
-        is_admin : true
-      }  
-    },
-    
-    {
-      path: '/event/:id',
-      name: 'ShowEvent',
-      component: ShowEvent
-    },
 
-    {
-      path: '/event/:id/addquiz',
-      name: 'AddQuiz',
-      component: AddQuiz
-    },
-    {
-      path: '/qrcode',
-      name: 'Qrcode',
-      component: Qrcode
-    },
+    // {
+    //   path: '/questions/edit/:id',
+    //   name: 'EditQuestion',
+    //   component: EditQuestion,
+    //   meta: { 
+    //     requiresAuth: true,
+    //     is_admin : true
+    //   }
+    // },
+    
+    // {
+    //   path: '/addevent',
+    //   name: 'AddEvent',
+    //   component: AddEvent,
+    //   meta: { 
+    //     requiresAuth: true,
+    //     is_admin : true
+    //   }      
+    // },
+    // {
+    //   path: '/events',
+    //   name: 'ShowAllEvents',
+    //   component: ShowAllEvents,
+    //   meta: { 
+    //     requiresAuth: true,
+    //     is_admin : true
+    //   }  
+    // },
+    
+    // {
+    //   path: '/event/:id',
+    //   name: 'ShowEvent',
+    //   component: ShowEvent
+    // },
+
+    // {
+    //   path: '/event/:id/addquiz',
+    //   name: 'AddQuiz',
+    //   component: AddQuiz
+    // },
+    // {
+    //   path: '/qrcode',
+    //   name: 'Qrcode',
+    //   component: Qrcode
+    // },
     {
       path: '/validate/:quizID/:id',
       name: 'Feedback',

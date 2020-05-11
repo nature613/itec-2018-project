@@ -90,13 +90,13 @@ input
     color: #af83c1
 
   &[type='text']
-    background-image: url('../../assets/person.svg')
+    background-image: url('../../../assets/person.svg')
 
   &[type="email"]
-    background-image: url('../../assets/email.svg')
+    background-image: url('../../../assets/email.svg')
 
   &[type='password']
-    background-image: url('../../assets/password.svg')
+    background-image: url('../../../assets/password.svg')
 
 @media (min-width: 900px)
   input

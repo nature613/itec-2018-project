@@ -7,7 +7,7 @@
 <script>
 import positiveFeedback from './PositiveFeedback'
 import negativeFeedback from './NegativeFeedback'
-import QuizService from '../../services/QuizService'
+import QuizService from '@/services/QuizService'
 
 export default {
   name: 'Feedback',

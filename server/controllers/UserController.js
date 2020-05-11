@@ -95,7 +95,7 @@ module.exports = {
     //TODO: Add posibility for users to delete themselves
     async deleteUser(req, res, next){
         try{
-            const user = await UserModel.findOneAndDelete({email: req.params.email});
+            const user = await UserModel.findOneAndDelete({email: req.params.email}, {useFindAndModify: false});
             res.send(user)
         }
         catch(err){

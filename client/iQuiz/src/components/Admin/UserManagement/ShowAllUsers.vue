@@ -26,7 +26,7 @@
       >
       <template slot="table-row" slot-scope="props">
         <span v-if="(props.column.field == 'actions')">
-          <img src="../../assets/delete-24px.svg" style="cursor: pointer" @click="deleteUser(props.row.email)"/>
+          <img src="../../../assets/delete-24px.svg" style="cursor: pointer" @click="deleteUser(props.row.email)"/>
         </span>
         <span v-else>
           {{props.formattedRow[props.column.field]}}

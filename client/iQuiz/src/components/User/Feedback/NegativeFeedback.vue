@@ -1,9 +1,8 @@
 <template>
   <div>
-    <img src="../../assets/check.svg" class="checkbox"/>
-    <h1 class="heading">You're all set!</h1>
-    <h4 class="subheading">The QR code you have provided is valid</h4>
-    <router-link to='/login' class="login-button" tag='span'>Next step (Login)</router-link>
+    <img src="../../../assets/close.svg" class="checkbox"/>
+    <h1 class="heading">Something is wrong!</h1>
+    <h4 class="subheading">It appears your QR code has already been used. If you think this is a mistake, please contact the quiz admin.</h4>
   </div>
 </template>
 
@@ -32,7 +31,7 @@ export default {
     margin-top: 1vh
     margin-bottom: 10vh
     font-weight: 500
-
+    
 .checkbox
     width: 200px
     height: 200px
@@ -52,4 +51,9 @@ export default {
 
     &:hover
       box-shadow: 0 0 15px #000
+  
+@media(min-width: 900px)
+  .subheading
+      width: 40vw
+      margin: 0 auto
 </style>

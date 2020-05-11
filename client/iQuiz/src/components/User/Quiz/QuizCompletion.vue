@@ -1,7 +1,7 @@
 <template>
 <div class="base-plate quiz-completion-plate">
     <div class="box">
-		<img src="../../assets/trophy.svg" class="trophy-pic"/>
+		<img src="../../../assets/trophy.svg" class="trophy-pic"/>
 		<h1 class="heading">Congratulations!</h1>
 		<p class="description"> Congrats for completing this quiz, your score is waiting for you down below! </p>
 	</div>

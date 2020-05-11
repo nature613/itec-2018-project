@@ -1,6 +1,6 @@
 <template>
 <div class="radio-plate">
-    <p v-for="(answerText, index) in answers" :key="index" v-bind:class="(selected===index) ? 'selected': 'notSelected'" class="answer" @click="selectAnswer(index)">{{answerText}}</p>
+    <p v-for="(answerText, index) in answers" :key="index" v-bind:class="(selected.includes(index)) ? 'selected': 'notSelected'" class="answer" @click="selectAnswer(index)">{{answerText}}</p>
 </div>
 </template>
 
@@ -10,8 +10,8 @@
 export default {
     data () {
         return {
-            answer: null,
-            selected: null
+            givenAnswers: [],
+            selected: []
 
         }
     },
@@ -20,8 +20,14 @@ export default {
     },
     methods: {
         selectAnswer(num){
-            this.answer = num;
-            this.selected = num
+            if(this.givenAnswers.includes(num)){
+                this.givenAnswers.splice(this.givenAnswers.indexOf(num), 1);
+                this.selected.splice(this.selected.indexOf(num), 1);
+            }
+            else{
+                this.givenAnswers.push(num);
+                this.selected.push(num);
+            }
         }
     },
     components:{
@@ -39,11 +45,11 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="sass">
 .selected
-    background-image: url('../../assets/baseline-radio_button_checked-24px.svg')
+    background-image: url('../../../assets/baseline-check_box-24px.svg')
     font-weight: bold
 
 .notSelected
-    background-image: url('../../assets/baseline-radio_button_unchecked-24px.svg')
+    background-image: url('../../../assets/baseline-check_box_outline_blank-24px.svg')
 
 .answer
     background-position: 0% center

@@ -1,6 +1,6 @@
 <template>
   <div class="base-plate error-plate">
-    <img src="../assets/defend.svg" class="checkbox"/>
+    <img src="../../assets/defend.svg" class="checkbox"/>
     <h1 class="heading">Sorry, you are
 not allowed to
 view this content</h1>

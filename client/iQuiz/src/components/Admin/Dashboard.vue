@@ -15,15 +15,15 @@
       </div>
       <div class="box">
         <router-link to="questions" tag="div" class="placeholder">
-          <img src="../assets/admin-manage-stuff.svg"/>
+          <img src="../../assets/admin-manage-stuff.svg"/>
           <h6 class="title">Manage questions pool</h6>
         </router-link>
         <router-link to="events" tag="div"  class="placeholder">
-          <img src="../assets/admin-manage-stuff.svg"/>
+          <img src="../../assets/admin-manage-stuff.svg"/>
           <h6 class="title">Manage events pool</h6>
         </router-link>
         <router-link to="users" tag="div"  class="placeholder">
-          <img src="../assets/admin-manage-users.svg"/>
+          <img src="../../assets/admin-manage-users.svg"/>
           <h6 class="title">Manage user accounts</h6>
         </router-link>
       </div>
