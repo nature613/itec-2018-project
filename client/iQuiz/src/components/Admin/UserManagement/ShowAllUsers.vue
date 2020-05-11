@@ -100,7 +100,7 @@ export default {
     margin-top: 0
 
 .dashboard-plate
-  padding: 2vh 2vw
+  padding: 4vh 2vw
   min-height: 75vh
   margin-bottom: 4vh
 
